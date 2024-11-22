@@ -20,8 +20,6 @@ class Home extends BaseController
             'aside' => $this->aside, 
             'navbar' => $this->navbar
         ];
-
-
     }
 
 

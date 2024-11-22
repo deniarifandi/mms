@@ -1,4 +1,10 @@
-
+ <?php 
+        echo $footerboot;
+    ?>
+     
+    </div>
+  </main>
+  
 <!-- right sidebar -->
 
 <div class="fixed-plugin">
@@ -337,3 +343,4 @@
 </body>
 
 </html>
+
