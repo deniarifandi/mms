@@ -8,17 +8,21 @@ class Home extends BaseController
     private $footerboot;
     private $navbar;
     private $allComp;
+    private $breadcrumb;
 
     function __construct(){
 
-        $this->aside = view('sidebar');
+        
         $this->footerboot = view('footerboot');
-        $this->navbar = view('navbar');
+        
+
+        $this->breadcrumb = [
+            'Pages' => 'pages'
+        ];
 
         $this->allComp = [
             'footerboot' => $this->footerboot, 
-            'aside' => $this->aside, 
-            'navbar' => $this->navbar
+            'breadcrumb' => $this->breadcrumb
         ];
     }
 
@@ -26,6 +30,8 @@ class Home extends BaseController
     public function index()
     {   
         echo view('header',$this->allComp);
+        echo view('sidebar');
+        echo view('navbar');
         echo view('dashboard');
         echo view('footer');
     }

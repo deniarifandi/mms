@@ -36,9 +36,7 @@
   <link id="pagestyle" href="<?php echo base_url()?>assets/css/material-dashboard.css?v=3.2.0" rel="stylesheet" />
 </head>
 <body class="g-sidenav-show  bg-gray-100">
- <?php echo $aside; ?>
- <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-    <!-- Navbar -->
-    <?php echo $navbar; ?>
-    <!-- End Navbar -->
-        <div class="container-fluid py-2">
+ 
+ 
+
+       
