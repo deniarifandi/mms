@@ -23,10 +23,12 @@ class Home extends BaseController
             'footerboot' => $this->footerboot, 
             'breadcrumb' => $this->breadcrumb
         ];
-        // echo var_dump(class_exists('App\Models\Students'));
 
-        // $userModel = new \App\Models\Students();
-        $userModel = model(\App\Models\Students::class);
+        $Students = new \App\Models\Students();
+
+        $data['students'] = $Students->findAll(); 
+        echo json_encode($data['students']);
+      
     }
 
 
