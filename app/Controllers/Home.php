@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\Students;
+
 class Home extends BaseController
 {
     private $aside;
@@ -14,16 +16,17 @@ class Home extends BaseController
 
         
         $this->footerboot = view('footerboot');
-        
-
         $this->breadcrumb = [
             'Pages' => 'pages'
         ];
-
         $this->allComp = [
             'footerboot' => $this->footerboot, 
             'breadcrumb' => $this->breadcrumb
         ];
+        // echo var_dump(class_exists('App\Models\Students'));
+
+        // $userModel = new \App\Models\Students();
+        $userModel = model(\App\Models\Students::class);
     }
 
 
@@ -34,5 +37,11 @@ class Home extends BaseController
         echo view('navbar');
         echo view('dashboard');
         echo view('footer');
+    }
+
+    public function getStudentsData(){
+
+        // $data['students'] = $students->findAll();
+        // echo json_encode($data['students']);
     }
 }
