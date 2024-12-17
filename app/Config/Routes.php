@@ -7,10 +7,6 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 
-$routes->get('/getStudentsData', 'Home::getStudentsData');
-$routes->get('/setStudentsData', 'Home::setStudentsData');
-$routes->get('/updateStudentData', 'Home::updateStudentData');
-
 $routes->group('/students',static function ($routes){
 	$routes->get('/','StudentsController::index');
 	$routes->get('show/(:num)','StudentsController::show/$1');
