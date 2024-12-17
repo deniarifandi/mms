@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\Students;
-use Carbon\Carbon;
 
 class Home extends BaseController
 {
@@ -28,10 +27,9 @@ class Home extends BaseController
         ];
 
         $this->Students = new \App\Models\Students();
-
-      
-      
     }
+
+
 
 
     public function index()
@@ -55,6 +53,7 @@ class Home extends BaseController
         $data = [
             'student_name' => 'darth',
             'email'    => 'd.vader@theempire.com',
+            'created_at' => date('Y-m-d H:i:s'),
         ];
 
 
@@ -63,16 +62,14 @@ class Home extends BaseController
     }
 
     public function updateStudentData(){
-        $job = $this->Students->find(140);
-
-        $now = Carbon::now();
-        echo $now->timestamp; 
-   
+        
+        $job = $this->Students->find(145);
  
-        // $job['email'] = "email edit";
-        // $job['updated_at'] = $now->getTimestamp();
+        $job['student_name'] = "nama_diedit";
+        $job['email'] = "email edit";
+        // $job['updated_at'] = date('Y-m-d H:i:s');
 
 
-        // echo $this->Students->save($job);
+        echo $this->Students->save($job);
     }
 }
