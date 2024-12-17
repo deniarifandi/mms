@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Students;
+use Carbon\Carbon;
 
 class Home extends BaseController
 {
@@ -11,6 +12,8 @@ class Home extends BaseController
     private $navbar;
     private $allComp;
     private $breadcrumb;
+    private $Students;
+
 
     function __construct(){
 
@@ -24,10 +27,9 @@ class Home extends BaseController
             'breadcrumb' => $this->breadcrumb
         ];
 
-        $Students = new \App\Models\Students();
+        $this->Students = new \App\Models\Students();
 
-        $data['students'] = $Students->findAll(); 
-        echo json_encode($data['students']);
+      
       
     }
 
@@ -43,7 +45,34 @@ class Home extends BaseController
 
     public function getStudentsData(){
 
-        // $data['students'] = $students->findAll();
-        // echo json_encode($data['students']);
+        $data['students'] = $this->Students->findColumn('student_name'); 
+        echo json_encode($data['students']);
+
+
+    }
+
+    public function setStudentsData(){
+        $data = [
+            'student_name' => 'darth',
+            'email'    => 'd.vader@theempire.com',
+        ];
+
+
+        echo $this->Students->insert($data, false); 
+        // echo $this->Students->getInsertID();
+    }
+
+    public function updateStudentData(){
+        $job = $this->Students->find(140);
+
+        $now = Carbon::now();
+        echo $now->timestamp; 
+   
+ 
+        // $job['email'] = "email edit";
+        // $job['updated_at'] = $now->getTimestamp();
+
+
+        // echo $this->Students->save($job);
     }
 }

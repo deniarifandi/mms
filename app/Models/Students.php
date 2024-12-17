@@ -6,15 +6,40 @@ use CodeIgniter\Model;
 
 class Students extends Model
 {
-  protected $table      = 'students'; // The name of the table
-    protected $primaryKey = 'student_id'; // The primary key column
+    protected $table      = 'students';
+    protected $primaryKey = 'student_id';
 
     protected $useAutoIncrement = true;
 
-    protected $returnType     = 'array'; // Returns data as an array
-    protected $useSoftDeletes = true; // Enable soft deletes if needed
+    protected $returnType     = 'array';
+    protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['name', 'email']; // Fields that can be inserted or updated
+    protected $allowedFields = ['student_name', 'email','updated_at'];
 
-    protected $useTimestamps = false; // Set to true if you have 'created_at' and 'updated_at' fields
+    protected bool $allowEmptyInserts = false;
+    protected bool $updateOnlyChanged = true;
+
+    // Dates
+    protected $useTimestamps = false;
+    protected $dateFormat    = 'datetime';
+    protected $createdField  = 'created_at';
+    protected $updatedField  = 'updated_at';
+    protected $deletedField  = 'deleted_at';
+
+    // Validation
+    protected $validationRules      = [];
+    protected $validationMessages   = [];
+    protected $skipValidation       = false;
+    protected $cleanValidationRules = true;
+
+    // Callbacks
+    protected $allowCallbacks = true;
+    protected $beforeInsert   = [];
+    protected $afterInsert    = [];
+    protected $beforeUpdate   = [];
+    protected $afterUpdate    = [];
+    protected $beforeFind     = [];
+    protected $afterFind      = [];
+    protected $beforeDelete   = [];
+    protected $afterDelete    = [];
 }
