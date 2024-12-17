@@ -8,16 +8,32 @@ class StudentsController extends BaseController
 {
 
     function __construct(){
-        require_once APPPATH . 'Libraries/ssp.class.php';
+        
         $this->Students = new \App\Models\Students();
         $data['successMessage'] = session()->getFlashdata('success');
         $data['errorMessage'] = session()->getFlashdata('error');
+
+        $this->footerboot = view('footerboot');
+        $this->breadcrumb = [
+            'Pages' => 'pages'
+        ];
+        $this->allComp = [
+            'footerboot' => $this->footerboot, 
+            'breadcrumb' => $this->breadcrumb
+        ];
     }
 
     public function index() {
         // Show list of items
-        $data = $this->Students->findAll();
-        echo json_encode($data);
+        $students = $this->Students->findAll();
+        
+        // echo json_encode($students);
+
+        echo view('header',$this->allComp);
+        echo view('sidebar');
+        echo view('navbar');
+        echo view('students/index',['students' => $students]);
+        echo view('footer');
     }
 
     public function show($id) {
@@ -28,7 +44,11 @@ class StudentsController extends BaseController
 
     public function create() {
         // Show a form to create a new item
-         return view('Students/create');
+        echo view('header',$this->allComp);
+        echo view('sidebar');
+        echo view('navbar');
+        echo view('Students/create');
+        echo view('footer');
     }
 
     public function store() {
