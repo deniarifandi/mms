@@ -7,9 +7,18 @@
     </div>
   </div>
   <div class="card-body">
-    <div class="p-4">
-      <form  action="store" method="post">
-        <div class="input-group input-group-dynamic mb-4" id="student_name">
+    <div class="px-4 py-1">
+
+      <?php if (session()->getFlashdata('error')): ?>
+        
+        <div class="alert alert-primary text-white px-2 py-1 mb-4" role="alert">
+           <?= session()->getFlashdata('error') ?>
+        </div>
+      <?php endif; ?>
+      
+      
+      <form action="store" method="post">
+        <div class="input-group input-group-dynamic mt-3 mb-4" id="student_name">
           <label class="form-label">Student's Name</label>
           <input type="text" name="student_name" class="form-control" value="<?= old('student_name') ?>" required>
 
@@ -18,6 +27,10 @@
           <label class="form-label">Student's E-mail</label>
           <input type="text" name="email" class="form-control" value="<?= old('email') ?>" required>
         </div>
+
+        <div class="col-md-6">
+     
+    </div>
           <button class="btn btn-success float-end" type="submit">Save</button>
       </form>
     </div>
@@ -40,15 +53,8 @@
 
                 if (input) {
                     const filled = document.getElementById(field);
-                    filled.classList.add('is-invalid');
                     filled.classList.add('is-filled');
-                    // Add the red border to the input field
-                    // Display the error message beneath the field
-                    // errorDiv.innerText = errors[field];
-                    
-                    //adding is filled
-                    // const filled = document.getElementById(field);
-                    // filled.classList.add('is-filled');
+                  
                 }
             }
         }

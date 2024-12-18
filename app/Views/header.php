@@ -29,7 +29,10 @@
   <link href="<?php echo base_url()?>assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="<?php echo base_url()?>assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <!-- <script src="https://kit.fontawesome.com/79ed1419b4.js" crossorigin="anonymous"></script> -->
+
+  <!-- <script type="text/javascript" src="<?php echo base_url()?>assets/js/fontawesome.min.js"></script> -->
+  <script src="https://kit.fontawesome.com/79ed1419b4.js" crossorigin="anonymous"></script>
   <!-- Material Icons -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
   <!-- CSS Files -->
@@ -52,6 +55,3 @@
     }
 </style>
 
-<?php if (session()->getFlashdata('error')): ?>
-  <p style="color: red;"><?= session()->getFlashdata('error') ?></p>
-<?php endif; ?>
