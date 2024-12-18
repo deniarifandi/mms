@@ -12,7 +12,7 @@ $routes->group('/students',static function ($routes){
 	$routes->get('show/(:num)','StudentsController::show/$1');
 	$routes->get('create','StudentsController::create');
 	$routes->post('store','StudentsController::store');
-	$routes->get('edit/:num','StudentsController::edit/$1');
-	$routes->post('update/:num','StudentsController::update/$1');
+	$routes->get('edit/(:num)','StudentsController::edit/$1');
+	$routes->post('update/(:num)','StudentsController::update/$1');
 	$routes->delete('delete','StudentsController::delete/$1');
 });

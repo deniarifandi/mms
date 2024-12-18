@@ -26,7 +26,7 @@
                       <td><?= $student['student_id'] ?></td>
                       <td><?= $student['student_name'] ?></td>
                       <td><?= $student['email'] ?></td>
-                      <td>4</td>
+                      <td><a class="btn btn-primary btn-sm mb-0" href="students/edit/<?= $student['student_id'] ?>">Edit</a></td>
                       
                     </tr>  
                     <?php endforeach ?>
