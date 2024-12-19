@@ -2,14 +2,14 @@
 
 namespace App\Controllers;
 
-use App\Models\Students;
+use App\Models\Classes;
 
-class StudentsController extends BaseController
+class ClassesController extends BaseController
 {
 
     function __construct(){
         
-        $this->Students = new \App\Models\Students();
+        $this->Classes = new \App\Models\Classes();
         $data['successMessage'] = session()->getFlashdata('success');
         $data['errorMessage'] = session()->getFlashdata('error');
 
@@ -25,22 +25,22 @@ class StudentsController extends BaseController
 
     public function index() {
         // Show list of items
-        $students = $this->Students
-        ->orderBy('student_id','desc')
+        $classes = $this->Classes
+        ->orderBy('class_id','desc')
         ->findAll();
         
-        // echo json_encode($students);
+        // echo json_encode($Classes);
 
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('students/index',['students' => $students]);
+        echo view('Classes/index',['classes' => $classes]);
         echo view('footer');
     }
 
     public function show($id) {
         // Show a single item by ID
-        $data = $this->Students->find($id);
+        $data = $this->Classes->find($id);
         echo json_encode($data);
     }
 
@@ -49,7 +49,7 @@ class StudentsController extends BaseController
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('Students/create');
+        echo view('Classes/create');
         echo view('footer');
     }
 
@@ -58,38 +58,37 @@ class StudentsController extends BaseController
         
         // $validation =  \Config\Services::validation();
         // $validation->setRules([
-        //     'student_name' => 'required|min_length[5]',
+        //     'class_name' => 'required|min_length[5]',
         //     'email' => 'required|valid_email',
         // ]);
 
         // if (!$this->validate([
-        //     'student_name'  => 'required|min_length[5]',
+        //     'class_name'  => 'required|min_length[5]',
         //     'email' => 'required|valid_email',
         // ])) {
         //     // Store error message in flashdata
         //     session()->setFlashdata('error', 'Validation failed. Please check your input.');
-        //     return redirect()->to(base_url('students/create'))->withInput()->with('validation', $validation);
+        //     return redirect()->to(base_url('Classes/create'))->withInput()->with('validation', $validation);
         // }
 
-        $this->Students->save([
-            'student_name' => $this->request->getPost('student_name'),
-            'email' => $this->request->getPost('email'),
+        $this->Classes->save([
+            'class_name' => $this->request->getPost('class_name')
         ]);
 
-        return redirect()->to(base_url('students'));
+        return redirect()->to(base_url('classes'));
     }
 
     public function edit($id) {
         // Show a form to edit an existing item
         // echo "testing";
 
-        $data = $this->Students->find($id);
+        $data = $this->Classes->find($id);
 
 
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('Students/edit',["data" => $data]);
+        echo view('Classes/edit',["data" => $data]);
         echo view('footer');
 
     }
@@ -98,20 +97,19 @@ class StudentsController extends BaseController
         // Update the item in the database
 
         $data = [
-            'student_name'  => $this->request->getPost('student_name'),
-            'email' => $this->request->getPost('email')
+            'class_name'  => $this->request->getPost('class_name')
         ];
 
-        $this->Students->update($id, $data);
-        return redirect()->to(base_url('students'));
+        $this->Classes->update($id, $data);
+        return redirect()->to(base_url('classes'));
     }
 
     public function delete($id) {
         // Delete the item from the database
 
-        $this->Students->delete($id);
-        session()->setFlashdata('success', 'Student Deleted');
-        return redirect()->to(base_url('students'));
+        $this->Classes->delete($id);
+        session()->setFlashdata('success', 'class Deleted');
+        return redirect()->to(base_url('classes'));
     }
    
 }

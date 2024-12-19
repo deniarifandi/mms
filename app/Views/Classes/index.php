@@ -13,30 +13,28 @@
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Students table <a href="students/create" class="btn btn-primary btn-sm float-end my-0 me-3">Add Student</a> </h6>
+                <h6 class="text-white text-capitalize ps-3">Classes table <a href="classes/create" class="btn btn-primary btn-sm float-end my-0 me-3">Add Class</a> </h6>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
               <div class="table-responsive px-5">
-                <table class="table align-items-center table-striped mb-0" id="studentsTable">
+                <table class="table align-items-center table-striped mb-0" id="classesTable">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Student Name</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Class ID</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Class Name</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                       
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach ($students as $student): ?>
+                    <?php foreach ($classes as $class): ?>
                       <tr>
-                      <td><?= $student['student_id'] ?></td>
-                      <td><?= $student['student_name'] ?></td>
-                      <td><?= $student['email'] ?></td>
+                      <td><?= $class['class_id'] ?></td>
+                      <td><?= $class['class_name'] ?></td>
                       <td>
-                        <a class="btn btn-primary btn-sm mb-0" href="students/edit/<?= $student['student_id'] ?>">Edit</a>
-                        <a class="btn btn-danger btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick='modalConfirmation(<?= json_encode($student); ?>)'>Delete</a>
+                        <a class="btn btn-primary btn-sm mb-0" href="classes/edit/<?= $class['class_id'] ?>">Edit</a>
+                        <a class="btn btn-danger btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick='modalConfirmation(<?= json_encode($class); ?>)'>Delete</a>
                       </td>
                       
                     </tr>  
@@ -63,12 +61,12 @@
         </button>
       </div>
       <div class="modal-body">
-        Deleting this student will remove all associated data permanently. Continue?
+        Deleting this class will remove all associated data permanently. Continue?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
         
-        <form action="/students/delete/1" method="POST" id="formDelete">
+        <form action="/classes/delete/1" method="POST" id="formDelete">
             <input type="hidden" name="_method" value="DELETE">
             <button type="submit" class="btn btn-danger">Confirm Delete</button>
         </form>
@@ -79,8 +77,8 @@
 </div>
 
 <script type="text/javascript">
-  new DataTable('#studentsTable', {
-      order: [[0, 'desc']]
+  new DataTable('#classesTable', {
+      order: [[1, 'asc']]
   });
 </script>
 
@@ -89,8 +87,8 @@
   function modalConfirmation(id){
     const array = Object.entries(id);
     console.log(array);
-    document.getElementById('deleteModalLabel').innerText = "Delete Student '"+array[1][1]+"'";
-    document.getElementById('formDelete').action = "students/delete/"+array[0][1];
+    document.getElementById('deleteModalLabel').innerText = "Delete Class '"+array[1][1]+"'";
+    document.getElementById('formDelete').action = "classes/delete/"+array[0][1];
   }
 
 </script>
