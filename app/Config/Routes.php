@@ -36,3 +36,13 @@ $routes->group('/subjects',static function ($routes){
 	$routes->post('update/(:num)','SubjectsController::update/$1');
 	$routes->delete('delete/(:num)','SubjectsController::delete/$1');
 });
+
+$routes->group('/objectives',static function ($routes){
+	$routes->get('/','ObjectivesController::index');
+	$routes->get('show/(:num)','ObjectivesController::show/$1');
+	$routes->get('create','ObjectivesController::create');
+	$routes->post('store','ObjectivesController::store');
+	$routes->get('edit/(:num)','ObjectivesController::edit/$1');
+	$routes->post('update/(:num)','ObjectivesController::update/$1');
+	$routes->delete('delete/(:num)','ObjectivesController::delete/$1');
+});
