@@ -101,6 +101,7 @@ class ClassesController extends BaseController
         ];
 
         $this->Classes->update($id, $data);
+        session()->setFlashdata('success', 'Class Edited');
         return redirect()->to(base_url('classes'));
     }
 
