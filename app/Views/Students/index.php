@@ -26,7 +26,10 @@
                       <td><?= $student['student_id'] ?></td>
                       <td><?= $student['student_name'] ?></td>
                       <td><?= $student['email'] ?></td>
-                      <td><a class="btn btn-primary btn-sm mb-0" href="students/edit/<?= $student['student_id'] ?>">Edit</a></td>
+                      <td>
+                        <a class="btn btn-primary btn-sm mb-0" href="students/edit/<?= $student['student_id'] ?>">Edit</a>
+                        <a class="btn btn-danger btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick='modalConfirmation(<?= json_encode($student); ?>)'>Delete</a>
+                      </td>
                       
                     </tr>  
                     <?php endforeach ?>
@@ -40,6 +43,43 @@
         </div>
       </div>
 
-      <script type="text/javascript">
-        new DataTable('#studentsTable');
-      </script>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title font-weight-normal" id="deleteModalLabel"></h5>
+        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Deleting this student will remove all associated data permanently. Continue?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+        <form action="student/delete/<?= $student['student_id'] ?>" method="post">
+            <!-- <input type="hidden" name="_method" value="delete"> -->
+          <button type="submit" id="deleteConfirm"  class="btn bg-gradient-danger">Confirm Delete</button>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  new DataTable('#studentsTable');
+</script>
+
+<script type="text/javascript">
+  
+  function modalConfirmation(id){
+    const array = Object.entries(id);
+    console.log(array);
+    document.getElementById('deleteModalLabel').innerText = "Delete Student '"+array[1][1]+"'";
+    // document.getElementById('deleteConfirm').href = "student/delete/"+array[0][1];
+  }
+
+</script>

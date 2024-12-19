@@ -106,6 +106,8 @@ class StudentsController extends BaseController
 
     public function delete($id) {
         // Delete the item from the database
+
+        $this->Students->delete($id);
     }
    
 }
