@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Objectives extends Model
+class Student extends Model
 {
-    protected $table      = 'objectives';
-    protected $primaryKey = 'objective_id';
+    protected $table      = 'students';
+    protected $primaryKey = 'student_id';
 
     protected $useAutoIncrement = true;
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['objective_description', 'email','updated_at'];
+    protected $allowedFields = ['student_name', 'email','updated_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

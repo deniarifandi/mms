@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Subjects extends Model
+class Objective extends Model
 {
-    protected $table      = 'subjects';
-    protected $primaryKey = 'subject_id';
+    protected $table      = 'objectives';
+    protected $primaryKey = 'objective_id';
 
     protected $useAutoIncrement = true;
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['subject_name', 'updated_at'];
+    protected $allowedFields = ['objective_description', 'email','updated_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

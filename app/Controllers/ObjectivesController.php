@@ -2,14 +2,14 @@
 
 namespace App\Controllers;
 
-use App\Models\Objectives;
+use App\Models\Objective;
 
 class ObjectivesController extends BaseController
 {
 
     function __construct(){
         
-        $this->Objectives = new \App\Models\Objectives();
+        $this->Objective = new \App\Models\Objective();
         $data['successMessage'] = session()->getFlashdata('success');
         $data['errorMessage'] = session()->getFlashdata('error');
 
@@ -25,7 +25,7 @@ class ObjectivesController extends BaseController
 
     public function index() {
         // Show list of items
-        $objectives = $this->Objectives
+        $objectives = $this->Objective
         ->orderBy('objective_id','desc')
         ->findAll();
         
@@ -40,7 +40,7 @@ class ObjectivesController extends BaseController
 
     public function show($id) {
         // Show a single item by ID
-        $data = $this->Objectives->find($id);
+        $data = $this->Objective->find($id);
         echo json_encode($data);
     }
 
@@ -71,7 +71,7 @@ class ObjectivesController extends BaseController
         //     return redirect()->to(base_url('Objectives/create'))->withInput()->with('validation', $validation);
         // }
 
-        $this->Objectives->save([
+        $this->Objective->save([
             'objective_description' => $this->request->getPost('objective_description')
         ]);
 
@@ -82,7 +82,7 @@ class ObjectivesController extends BaseController
         // Show a form to edit an existing item
         // echo "testing";
 
-        $data = $this->Objectives->find($id);
+        $data = $this->Objective->find($id);
 
 
         echo view('header',$this->allComp);
@@ -100,7 +100,7 @@ class ObjectivesController extends BaseController
             'objective_description'  => $this->request->getPost('objective_description')
         ];
 
-        $this->Objectives->update($id, $data);
+        $this->Objective->update($id, $data);
         session()->setFlashdata('success', 'objective Edited');
         return redirect()->to(base_url('objectives'));
     }
@@ -108,7 +108,7 @@ class ObjectivesController extends BaseController
     public function delete($id) {
         // Delete the item from the database
 
-        $this->Objectives->delete($id);
+        $this->Objective->delete($id);
         session()->setFlashdata('success', 'objective Deleted');
         return redirect()->to(base_url('objectives'));
     }

@@ -2,14 +2,14 @@
 
 namespace App\Controllers;
 
-use App\Models\Students;
+use App\Models\Student;
 
 class StudentsController extends BaseController
 {
 
     function __construct(){
         
-        $this->Students = new \App\Models\Students();
+        $this->Student = new \App\Models\Student();
         $data['successMessage'] = session()->getFlashdata('success');
         $data['errorMessage'] = session()->getFlashdata('error');
 
@@ -25,7 +25,7 @@ class StudentsController extends BaseController
 
     public function index() {
         // Show list of items
-        $students = $this->Students
+        $students = $this->Student
         ->orderBy('student_id','desc')
         ->findAll();
         
@@ -34,13 +34,13 @@ class StudentsController extends BaseController
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('students/index',['students' => $students]);
+        echo view('Students/index',['students' => $students]);
         echo view('footer');
     }
 
     public function show($id) {
         // Show a single item by ID
-        $data = $this->Students->find($id);
+        $data = $this->Student->find($id);
         echo json_encode($data);
     }
 
@@ -71,7 +71,7 @@ class StudentsController extends BaseController
         //     return redirect()->to(base_url('students/create'))->withInput()->with('validation', $validation);
         // }
 
-        $this->Students->save([
+        $this->Student->save([
             'student_name' => $this->request->getPost('student_name'),
             'email' => $this->request->getPost('email'),
         ]);
@@ -83,7 +83,7 @@ class StudentsController extends BaseController
         // Show a form to edit an existing item
         // echo "testing";
 
-        $data = $this->Students->find($id);
+        $data = $this->Student->find($id);
 
 
         echo view('header',$this->allComp);
@@ -102,7 +102,7 @@ class StudentsController extends BaseController
             'email' => $this->request->getPost('email')
         ];
 
-        $this->Students->update($id, $data);
+        $this->Student->update($id, $data);
         session()->setFlashdata('success', 'Student Edited');
         return redirect()->to(base_url('students'));
     }
@@ -110,7 +110,7 @@ class StudentsController extends BaseController
     public function delete($id) {
         // Delete the item from the database
 
-        $this->Students->delete($id);
+        $this->Student->delete($id);
         session()->setFlashdata('success', 'Student Deleted');
         return redirect()->to(base_url('students'));
     }

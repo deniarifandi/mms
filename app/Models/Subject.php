@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Teachers extends Model
+class Subject extends Model
 {
-    protected $table      = 'teachers';
-    protected $primaryKey = 'teacher_id';
+    protected $table      = 'subjects';
+    protected $primaryKey = 'subject_id';
 
     protected $useAutoIncrement = true;
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['teacher_name', 'email','updated_at'];
+    protected $allowedFields = ['subject_name', 'updated_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

@@ -56,3 +56,13 @@ $routes->group('/teachers',static function ($routes){
 	$routes->post('update/(:num)','TeachersController::update/$1');
 	$routes->delete('delete/(:num)','TeachersController::delete/$1');
 });
+
+$routes->group('/lesson-plans',static function ($routes){
+	$routes->get('/','lessonPlansController::index');
+	$routes->get('show/(:num)','lessonPlansController::show/$1');
+	$routes->get('create','lessonPlansController::create');
+	$routes->post('store','lessonPlansController::store');
+	$routes->get('edit/(:num)','lessonPlansController::edit/$1');
+	$routes->post('update/(:num)','lessonPlansController::update/$1');
+	$routes->delete('delete/(:num)','lessonPlansController::delete/$1');
+});
