@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Teachers extends Model
+class LessonPlan extends Model
 {
     protected $table      = 'lesson_plans';
-    protected $primaryKey = 'teacher_id';
+    protected $primaryKey = 'lessonPlan_id';
 
     protected $useAutoIncrement = true;
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['teacher_name', 'email','updated_at'];
+    protected $allowedFields = ['lessonPlan_title','created_at','updated_at','deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

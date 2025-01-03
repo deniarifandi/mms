@@ -2,14 +2,14 @@
 
 namespace App\Controllers;
 
-use App\Models\Subject;
+use App\Models\lessonPlan;
 
-class SubjectsController extends BaseController
+class LessonPlansController extends BaseController
 {
 
     function __construct(){
         
-        $this->Subject = new \App\Models\Subject();
+        $this->lessonPlan = new \App\Models\lessonPlan();
         $data['successMessage'] = session()->getFlashdata('success');
         $data['errorMessage'] = session()->getFlashdata('error');
 
@@ -25,22 +25,22 @@ class SubjectsController extends BaseController
 
     public function index() {
         // Show list of items
-        $subjects = $this->Subject
-        ->orderBy('subject_id','desc')
+        $lessonPlans = $this->lessonPlan
+        ->orderBy('lessonPlan_id','desc')
         ->findAll();
         
-        // echo json_encode($Subjects);
+        // echo json_encode($lessonPlan);
 
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('Subjects/index',['subjects' => $subjects]);
+        echo view('LessonPlans/index',['lessonPlans' => $lessonPlans]);
         echo view('footer');
     }
 
     public function show($id) {
         // Show a single item by ID
-        $data = $this->Subject->find($id);
+        $data = $this->lessonPlan->find($id);
         echo json_encode($data);
     }
 
@@ -49,7 +49,7 @@ class SubjectsController extends BaseController
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('Subjects/create');
+        echo view('LessonPlans/create');
         echo view('footer');
     }
 
@@ -58,37 +58,38 @@ class SubjectsController extends BaseController
         
         // $validation =  \Config\Services::validation();
         // $validation->setRules([
-        //     'subject_name' => 'required|min_length[5]',
+        //     'lessonPlan_name' => 'required|min_length[5]',
         //     'email' => 'required|valid_email',
         // ]);
 
         // if (!$this->validate([
-        //     'subject_name'  => 'required|min_length[5]',
+        //     'lessonPlan_name'  => 'required|min_length[5]',
         //     'email' => 'required|valid_email',
         // ])) {
         //     // Store error message in flashdata
         //     session()->setFlashdata('error', 'Validation failed. Please check your input.');
-        //     return redirect()->to(base_url('Subjects/create'))->withInput()->with('validation', $validation);
+        //     return redirect()->to(base_url('lesson-plans/create'))->withInput()->with('validation', $validation);
         // }
 
-        $this->Subject->save([
-            'subject_name' => $this->request->getPost('subject_name')
+        $this->lessonPlan->save([
+            'lessonPlan_title' => $this->request->getPost('lessonPlan_title')
         ]);
 
-        return redirect()->to(base_url('subjects'));
+
+        return redirect()->to(base_url('lesson-plans'));
     }
 
     public function edit($id) {
         // Show a form to edit an existing item
         // echo "testing";
 
-        $data = $this->Subject->find($id);
+        $data = $this->lessonPlan->find($id);
 
 
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('Subjects/edit',["data" => $data]);
+        echo view('LessonPlans/edit',["data" => $data]);
         echo view('footer');
 
     }
@@ -97,20 +98,20 @@ class SubjectsController extends BaseController
         // Update the item in the database
 
         $data = [
-            'subject_name'  => $this->request->getPost('subject_name')
+            'lessonPlan_title'  => $this->request->getPost('lessonPlan_title')
         ];
 
-        $this->Subject->update($id, $data);
-        session()->setFlashdata('success', 'subject Edited');
-        return redirect()->to(base_url('subjects'));
+        $this->lessonPlan->update($id, $data);
+        session()->setFlashdata('success', 'Lesson Plan Edited');
+        return redirect()->to(base_url('lesson-plans'));
     }
 
     public function delete($id) {
         // Delete the item from the database
 
-        $this->Subject->delete($id);
-        session()->setFlashdata('success', 'subject Deleted');
-        return redirect()->to(base_url('subjects'));
+        $this->lessonPlan->delete($id);
+        session()->setFlashdata('success', 'Lesson Plan Deleted');
+        return redirect()->to(base_url('lesson-plans'));
     }
    
 }

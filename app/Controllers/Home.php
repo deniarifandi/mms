@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\Students;
+use App\Models\Student;
 
 class Home extends BaseController
 {
@@ -26,7 +26,7 @@ class Home extends BaseController
             'breadcrumb' => $this->breadcrumb
         ];
 
-        $this->Students = new \App\Models\Students();
+        $this->Student = new \App\Models\Student();
     }
 
 

@@ -18,32 +18,38 @@
         </li>
         <li class="nav-item">
           <a class="nav-link text-dark" href="<?php echo base_url()?>students">
-            <i class="material-symbols-rounded opacity-5">table_view</i>
+            <i class="fas fa-user-graduate"></i>
             <span class="nav-link-text ms-1">Students</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-dark" href="<?php echo base_url()?>classes">
-            <i class="material-symbols-rounded opacity-5">table_view</i>
+            <i class="fas fa-users"></i>
             <span class="nav-link-text ms-1">Classes</span>
           </a>
         </li>
          <li class="nav-item">
           <a class="nav-link text-dark" href="<?php echo base_url()?>subjects">
-            <i class="material-symbols-rounded opacity-5">table_view</i>
+            <i class="fas fa-book-open"></i>
             <span class="nav-link-text ms-1">Subjects</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-dark" href="<?php echo base_url()?>objectives">
-            <i class="material-symbols-rounded opacity-5">table_view</i>
+            <i class="fas fa-crosshairs"></i>
             <span class="nav-link-text ms-1">Objectives</span>
           </a>
         </li>
          <li class="nav-item">
           <a class="nav-link text-dark" href="<?php echo base_url()?>teachers">
-            <i class="material-symbols-rounded opacity-5">table_view</i>
+            <i class="fas fa-chalkboard-user"></i>
             <span class="nav-link-text ms-1">Teachers</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="<?php echo base_url()?>lesson-plans">
+            <i class="fas fa-pencil"></i>
+            <span class="nav-link-text ms-1">Lesson Plans</span>
           </a>
         </li>
         <li class="nav-item mt-3">
