@@ -14,7 +14,7 @@ $routes->group('/students',static function ($routes){
 	$routes->post('store','StudentsController::store');
 	$routes->get('edit/(:num)','StudentsController::edit/$1');
 	$routes->post('update/(:num)','StudentsController::update/$1');
-	$routes->delete('delete/(:num )','StudentsController::delete/$1');
+	$routes->delete('delete/(:num)','StudentsController::delete/$1');
 });
 
 $routes->group('/classes',static function ($routes){

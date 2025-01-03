@@ -2,14 +2,14 @@
 
 namespace App\Controllers;
 
-use App\Models\Teachers;
+use App\Models\Teacher;
 
 class TeachersController extends BaseController
 {
 
     function __construct(){
         
-        $this->Teachers = new \App\Models\Teachers();
+        $this->Teachers = new \App\Models\Teacher();
         $data['successMessage'] = session()->getFlashdata('success');
         $data['errorMessage'] = session()->getFlashdata('error');
 
