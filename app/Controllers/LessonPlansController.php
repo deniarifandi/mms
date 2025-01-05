@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\lessonPlan;
+use App\Models\Subject;
 
 class LessonPlansController extends BaseController
 {
@@ -10,6 +11,7 @@ class LessonPlansController extends BaseController
     function __construct(){
         
         $this->lessonPlan = new \App\Models\lessonPlan();
+        $this->subject = new \App\Models\Subject();
         $data['successMessage'] = session()->getFlashdata('success');
         $data['errorMessage'] = session()->getFlashdata('error');
 
@@ -27,6 +29,8 @@ class LessonPlansController extends BaseController
         // Show list of items
         $lessonPlans = $this->lessonPlan
         ->orderBy('lessonPlan_id','desc')
+        ->join('subjects','lesson_plans.subject_id = subjects.subject_id')
+        ->where('subjects.deleted_at',null)
         ->findAll();
         
         // echo json_encode($lessonPlan);
@@ -46,10 +50,12 @@ class LessonPlansController extends BaseController
 
     public function create() {
         // Show a form to create a new item
+
+        $subjects = $this->subject->findAll();
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('LessonPlans/create');
+        echo view('LessonPlans/create',['subjects'=> $subjects]);
         echo view('footer');
     }
 

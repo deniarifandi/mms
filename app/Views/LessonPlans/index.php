@@ -23,6 +23,7 @@
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Lesson Plan ID</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Lesson Plan Name</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Subject</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                       
                     </tr>
@@ -32,6 +33,7 @@
                       <tr>
                       <td><?= $lessonPlan['lessonPlan_id'] ?></td>
                       <td><?= $lessonPlan['lessonPlan_title'] ?></td>
+                      <td><?= $lessonPlan['subject_name'] ?></td>
                       <td>
                         <a class="btn btn-primary btn-sm mb-0" href="lesson-plans/edit/<?= $lessonPlan['lessonPlan_id'] ?>">Edit</a>
                         <a class="btn btn-danger btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick='modalConfirmation(<?= json_encode($lessonPlan); ?>)'>Delete</a>

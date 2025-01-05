@@ -25,10 +25,16 @@
               <label class="form-label">Lesson Plan's Title</label>
               <input type="text" name="lessonPlan_title" class="form-control" value="<?= old('lessonPlan_title') ?>" required>
             </div>
-             <div class="input-group input-group-outline my-3" id="subject_id">
-              <label class="form-label">Subject</label>
-              <input type="text" name="subject_id" class="form-control" value="<?= old('subject_id') ?>" required>
-            </div>
+              <div class="input-group input-group-static mb-4">
+               <label for="exampleFormControlSelect1" class="ms-0">Subject</label>
+               <select class="form-control px-2" name="subject_id" id="exampleFormControlSelect1">
+                <option value="">-Select Subject-</option>
+                <?php foreach ($subjects as $subject): ?>
+                   <option value="<?= $subject['subject_id'] ?>"><?= $subject['subject_name'] ?></option>
+                <?php endforeach ?>
+                
+               </select>
+             </div>
              <div class="input-group input-group-outline my-3" id="description">
               <label class="form-label">Lesson Plan's Description</label>
               <input type="text" name="description" class="form-control" value="<?= old('description') ?>" required>
