@@ -14,7 +14,7 @@ class Subject extends Model
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['subject_name', 'updated_at'];
+    protected $allowedFields = ['subject_name','description', 'created_at', 'updated_at','deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

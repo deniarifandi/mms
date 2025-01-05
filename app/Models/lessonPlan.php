@@ -14,7 +14,7 @@ class LessonPlan extends Model
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['lessonPlan_title','created_at','updated_at','deleted_at'];
+    protected $allowedFields = ['lessonPlan_id','lessonPlan_title','subject_id','description','file','created_at','updated_at','deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

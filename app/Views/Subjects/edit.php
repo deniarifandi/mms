@@ -23,6 +23,10 @@
             <div class="input-group input-group-outline my-3 is-filled" id="subject_name">
               <label class="form-label">Subject's Name</label>
               <input type="text" name="subject_name" class="form-control" value="<?= $data['subject_name'] ?>" required>
+            </div>
+            <div class="input-group input-group-outline my-3 is-filled" id="description">
+              <label class="form-label">Subject's Description</label>
+              <input type="text" name="description" class="form-control" value="<?= $data['description'] ?>" required>
 
             </div>
               <button class="btn btn-success float-end" type="submit">Save</button>

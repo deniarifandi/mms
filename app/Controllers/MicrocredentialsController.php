@@ -2,14 +2,14 @@
 
 namespace App\Controllers;
 
-use App\Models\lessonPlan;
+use App\Models\Microcredential;
 
-class LessonPlansController extends BaseController
+class MicrocredentialsController extends BaseController
 {
 
     function __construct(){
         
-        $this->lessonPlan = new \App\Models\lessonPlan();
+        $this->Microcredentials = new \App\Models\Microcredential();
         $data['successMessage'] = session()->getFlashdata('success');
         $data['errorMessage'] = session()->getFlashdata('error');
 
@@ -25,22 +25,22 @@ class LessonPlansController extends BaseController
 
     public function index() {
         // Show list of items
-        $lessonPlans = $this->lessonPlan
-        ->orderBy('lessonPlan_id','desc')
+        $microcredentials = $this->Microcredentials
+        ->orderBy('microcredential_id','desc')
         ->findAll();
         
-        // echo json_encode($lessonPlan);
+        // echo json_encode($microcredentials);
 
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('LessonPlans/index',['lessonPlans' => $lessonPlans]);
+        echo view('Microcredentials/index',['microcredentials' => $microcredentials]);
         echo view('footer');
     }
 
     public function show($id) {
         // Show a single item by ID
-        $data = $this->lessonPlan->find($id);
+        $data = $this->Microcredentials->find($id);
         echo json_encode($data);
     }
 
@@ -49,34 +49,29 @@ class LessonPlansController extends BaseController
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('LessonPlans/create');
+        echo view('Microcredentials/create');
         echo view('footer');
     }
 
     public function store() {
 
-        $this->lessonPlan->save([
-            'lessonPlan_title' => $this->request->getPost('lessonPlan_title'),
-            'subject_id' => $this->request->getPost('subject_id'),
-            'description' => $this->request->getPost('description'),
-            'file' => $this->request->getPost('file')
+        $this->Microcredentials->save([
+            'microcredential' => $this->request->getPost('microcredential'),
         ]);
 
-
-        return redirect()->to(base_url('lesson-plans'));
+        return redirect()->to(base_url('microcredentials'));
     }
 
     public function edit($id) {
         // Show a form to edit an existing item
         // echo "testing";
 
-        $data = $this->lessonPlan->find($id);
-
+        $data = $this->Microcredentials->find($id);
 
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('LessonPlans/edit',["data" => $data]);
+        echo view('Microcredentials/edit',["data" => $data]);
         echo view('footer');
 
     }
@@ -85,23 +80,20 @@ class LessonPlansController extends BaseController
         // Update the item in the database
 
         $data = [
-            'lessonPlan_title'  => $this->request->getPost('lessonPlan_title'),
-            'subject_id' => $this->request->getPost('subject_id'),
-            'description' => $this->request->getPost('description'),
-            'file' => $this->request->getPost('file')
+            'microcredential'  => $this->request->getPost('microcredential')
         ];
 
-        $this->lessonPlan->update($id, $data);
-        session()->setFlashdata('success', 'Lesson Plan Edited');
-        return redirect()->to(base_url('lesson-plans'));
+        $this->Microcredentials->update($id, $data);
+        session()->setFlashdata('success', 'Microcredential Edited');
+        return redirect()->to(base_url('microcredentials'));
     }
 
     public function delete($id) {
         // Delete the item from the database
 
-        $this->lessonPlan->delete($id);
-        session()->setFlashdata('success', 'Lesson Plan Deleted');
-        return redirect()->to(base_url('lesson-plans'));
+        $this->Microcredentials->delete($id);
+        session()->setFlashdata('success', 'Microcredential Deleted');
+        return redirect()->to(base_url('microcredentials'));
     }
    
 }

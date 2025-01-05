@@ -54,25 +54,11 @@ class SubjectsController extends BaseController
     }
 
     public function store() {
-        // Store a newly created item in the database
-        
-        // $validation =  \Config\Services::validation();
-        // $validation->setRules([
-        //     'subject_name' => 'required|min_length[5]',
-        //     'email' => 'required|valid_email',
-        // ]);
 
-        // if (!$this->validate([
-        //     'subject_name'  => 'required|min_length[5]',
-        //     'email' => 'required|valid_email',
-        // ])) {
-        //     // Store error message in flashdata
-        //     session()->setFlashdata('error', 'Validation failed. Please check your input.');
-        //     return redirect()->to(base_url('Subjects/create'))->withInput()->with('validation', $validation);
-        // }
 
         $this->Subject->save([
-            'subject_name' => $this->request->getPost('subject_name')
+            'subject_name' => $this->request->getPost('subject_name'),
+            'description' => $this->request->getPost('description')
         ]);
 
         return redirect()->to(base_url('subjects'));
@@ -97,7 +83,8 @@ class SubjectsController extends BaseController
         // Update the item in the database
 
         $data = [
-            'subject_name'  => $this->request->getPost('subject_name')
+            'subject_name'  => $this->request->getPost('subject_name'),
+            'description' => $this->request->getPost('description')
         ];
 
         $this->Subject->update($id, $data);

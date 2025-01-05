@@ -23,7 +23,18 @@
             <div class="input-group input-group-outline my-3 is-filled" id="lessonPlan_title">
               <label class="form-label">Lesson Plan's Name</label>
               <input type="text" name="lessonPlan_title" class="form-control" value="<?= $data['lessonPlan_title'] ?>" required>
-
+            </div>
+            <div class="input-group input-group-outline my-3 is-filled" id="subject_id">
+              <label class="form-label">Lesson Plan's Name</label>
+              <input type="text" name="subject_id" class="form-control" value="<?= $data['subject_id'] ?>" required>
+            </div>
+              <div class="input-group input-group-outline my-3 is-filled" id="description">
+              <label class="form-label">Lesson Plan's Description</label>
+              <input type="text" name="description" class="form-control" value="<?= $data['description'] ?>" required>
+            </div>
+              <div class="input-group input-group-outline my-3 is-filled" id="file">
+              <label class="form-label">Lesson Plan's Name</label>
+              <input type="text" name="file" class="form-control" value="<?= $data['file'] ?>" required>
             </div>
               <button class="btn btn-success float-end" type="submit">Save</button>
           </div>

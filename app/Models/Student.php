@@ -14,7 +14,7 @@ class Student extends Model
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['student_name', 'email','updated_at'];
+    protected $allowedFields = ['student_name', 'email','created_at', 'updated_at','deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

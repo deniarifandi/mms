@@ -16,6 +16,11 @@
             <span class="nav-link-text ms-1">Dashboard</span>
           </a>
         </li>
+
+         <li class="nav-item mt-3">
+          <h6 class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-5">Users</h6>
+        </li>
+
         <li class="nav-item">
           <a class="nav-link text-dark" href="<?php echo base_url()?>students">
             <i class="fas fa-user-graduate"></i>
@@ -23,38 +28,77 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="<?php echo base_url()?>classes">
-            <i class="fas fa-users"></i>
-            <span class="nav-link-text ms-1">Classes</span>
-          </a>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link text-dark" href="<?php echo base_url()?>subjects">
-            <i class="fas fa-book-open"></i>
-            <span class="nav-link-text ms-1">Subjects</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="<?php echo base_url()?>objectives">
-            <i class="fas fa-crosshairs"></i>
-            <span class="nav-link-text ms-1">Objectives</span>
-          </a>
-        </li>
-         <li class="nav-item">
           <a class="nav-link text-dark" href="<?php echo base_url()?>teachers">
             <i class="fas fa-chalkboard-user"></i>
             <span class="nav-link-text ms-1">Teachers</span>
           </a>
         </li>
+          <li class="nav-item">
+          <a class="nav-link text-dark" href="<?php echo base_url()?>classes">
+            <i class="fas fa-users"></i>
+            <span class="nav-link-text ms-1">Classes</span>
+          </a>
+        </li>  
+
+         <li class="nav-item mt-3">
+          <h6 class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-5">Resources</h6>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="<?php echo base_url()?>subjects">
+            <i class="fas fa-book-open"></i>
+            <span class="nav-link-text ms-1">Subjects</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="<?php echo base_url()?>pedagogys">
+            <i class="fas fa-lightbulb"></i>
+            <span class="nav-link-text ms-1">Pedagogies</span>
+          </a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link text-dark" href="<?php echo base_url()?>microcredentials">
+            <i class="fab fa-microblog"></i>
+            <span class="nav-link-text ms-1">Microcredentials</span>
+          </a>
+        </li>
+        <li class="nav-item" style="display: none;">
+          <a class="nav-link text-dark" href="<?php echo base_url()?>objectives">
+            <i class="fas fa-crosshairs"></i>
+            <span class="nav-link-text ms-1">Objectives</span>
+          </a>
+        </li>
+
+          <li class="nav-item mt-3">
+          <h6 class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-5">Materials</h6>
+        </li>
+
+         
         <li class="nav-item">
           <a class="nav-link text-dark" href="<?php echo base_url()?>lesson-plans">
             <i class="fas fa-pencil"></i>
             <span class="nav-link-text ms-1">Lesson Plans</span>
           </a>
         </li>
-        <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-5">Account pages</h6>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="<?php echo base_url()?>cases">
+            <i class="fas fa-book"></i>
+            <span class="nav-link-text ms-1">Case Study</span>
+          </a>
         </li>
+         <li class="nav-item">
+          <a class="nav-link text-dark" href="<?php echo base_url()?>presentations">
+            <i class="fas fa-tv"></i>
+            <span class="nav-link-text ms-1">Presentations</span>
+          </a>
+        </li>
+        
+
+         <li class="nav-item mt-3">
+          <h6 class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-5">Accounts</h6>
+        </li>
+
         <li class="nav-item">
           <a class="nav-link text-dark" href="<?php echo base_url()?>pages/profile.html">
             <i class="material-symbols-rounded opacity-5">person</i>

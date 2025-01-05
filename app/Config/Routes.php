@@ -66,3 +66,43 @@ $routes->group('/lesson-plans',static function ($routes){
 	$routes->post('update/(:num)','lessonPlansController::update/$1');
 	$routes->delete('delete/(:num)','lessonPlansController::delete/$1');
 });
+
+$routes->group('/pedagogys',static function ($routes){
+	$routes->get('/','PedagogysController::index');
+	$routes->get('show/(:num)','PedagogysController::show/$1');
+	$routes->get('create','PedagogysController::create');
+	$routes->post('store','PedagogysController::store');
+	$routes->get('edit/(:num)','PedagogysController::edit/$1');
+	$routes->post('update/(:num)','PedagogysController::update/$1');
+	$routes->delete('delete/(:num)','PedagogysController::delete/$1');
+});
+
+$routes->group('/microcredentials',static function ($routes){
+	$routes->get('/','MicrocredentialsController::index');
+	$routes->get('show/(:num)','MicrocredentialsController::show/$1');
+	$routes->get('create','MicrocredentialsController::create');
+	$routes->post('store','MicrocredentialsController::store');
+	$routes->get('edit/(:num)','MicrocredentialsController::edit/$1');
+	$routes->post('update/(:num)','MicrocredentialsController::update/$1');
+	$routes->delete('delete/(:num)','MicrocredentialsController::delete/$1');
+});
+
+$routes->group('/cases',static function ($routes){
+	$routes->get('/','CasesController::index');
+	$routes->get('show/(:num)','CasesController::show/$1');
+	$routes->get('create','CasesController::create');
+	$routes->post('store','CasesController::store');
+	$routes->get('edit/(:num)','CasesController::edit/$1');
+	$routes->post('update/(:num)','CasesController::update/$1');
+	$routes->delete('delete/(:num)','CasesController::delete/$1');
+});
+
+$routes->group('/presentations',static function ($routes){
+	$routes->get('/','PresentationsController::index');
+	$routes->get('show/(:num)','PresentationsController::show/$1');
+	$routes->get('create','PresentationsController::create');
+	$routes->post('store','PresentationsController::store');
+	$routes->get('edit/(:num)','PresentationsController::edit/$1');
+	$routes->post('update/(:num)','PresentationsController::update/$1');
+	$routes->delete('delete/(:num)','PresentationsController::delete/$1');
+});

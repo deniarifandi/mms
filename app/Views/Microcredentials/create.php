@@ -3,7 +3,7 @@
 <div class="card card-frame">
   <div class="card-header p-0 position-relative mt-n2 mx-3 z-index-2">
     <div class="bg-gradient-dark shadow-dark border-radius-lg">
-      <h6 class="text-white text-capitalize ps-3 m-0 p-2">Add Subject</h6>
+      <h6 class="text-white text-capitalize ps-3 m-0 p-2">Add Microcredential</h6>
     </div>
   </div>
   <div class="card-body">
@@ -21,13 +21,9 @@
       <form action="store" method="post">
         <div class="row">
           <div class="col-md-12">
-            <div class="input-group input-group-outline my-3" id="subject_name">
-              <label class="form-label">Subject's Title</label>
-              <input type="text" name="subject_name" class="form-control" value="<?= old('subject_name') ?>" required>
-            </div>
-            <div class="input-group input-group-outline my-3" id="description">
-              <label class="form-label">Subject's Description</label>
-              <input type="text" name="description" class="form-control" value="<?= old('description') ?>" required>
+            <div class="input-group input-group-outline my-3" id="microcredential">
+              <label class="form-label">Microcredential's Name</label>
+              <input type="text" name="microcredential" class="form-control" value="<?= old('microcredential') ?>" required>
 
             </div>
               <button class="btn btn-success float-end" type="submit">Save</button>

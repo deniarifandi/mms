@@ -14,7 +14,7 @@ class Teacher extends Model
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['teacher_name', 'email','updated_at'];
+    protected $allowedFields = ['teacher_name', 'email','created_at', 'updated_at','deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

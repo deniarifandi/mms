@@ -2,14 +2,14 @@
 
 namespace App\Controllers;
 
-use App\Models\lessonPlan;
+use App\Models\Pedagogy;
 
-class LessonPlansController extends BaseController
+class PedagogysController extends BaseController
 {
 
     function __construct(){
         
-        $this->lessonPlan = new \App\Models\lessonPlan();
+        $this->Pedagogys = new \App\Models\Pedagogy();
         $data['successMessage'] = session()->getFlashdata('success');
         $data['errorMessage'] = session()->getFlashdata('error');
 
@@ -25,22 +25,22 @@ class LessonPlansController extends BaseController
 
     public function index() {
         // Show list of items
-        $lessonPlans = $this->lessonPlan
-        ->orderBy('lessonPlan_id','desc')
+        $pedagogys = $this->Pedagogys
+        ->orderBy('pedagogy_id','desc')
         ->findAll();
         
-        // echo json_encode($lessonPlan);
+        // echo json_encode($pedagogys);
 
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('LessonPlans/index',['lessonPlans' => $lessonPlans]);
+        echo view('pedagogys/index',['pedagogys' => $pedagogys]);
         echo view('footer');
     }
 
     public function show($id) {
         // Show a single item by ID
-        $data = $this->lessonPlan->find($id);
+        $data = $this->Pedagogys->find($id);
         echo json_encode($data);
     }
 
@@ -49,34 +49,31 @@ class LessonPlansController extends BaseController
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('LessonPlans/create');
+        echo view('Pedagogys/create');
         echo view('footer');
     }
 
     public function store() {
+      
 
-        $this->lessonPlan->save([
-            'lessonPlan_title' => $this->request->getPost('lessonPlan_title'),
-            'subject_id' => $this->request->getPost('subject_id'),
-            'description' => $this->request->getPost('description'),
-            'file' => $this->request->getPost('file')
+        $this->Pedagogys->save([
+            'pedagogy' => $this->request->getPost('pedagogy')
         ]);
 
-
-        return redirect()->to(base_url('lesson-plans'));
+        return redirect()->to(base_url('pedagogys'));
     }
 
     public function edit($id) {
         // Show a form to edit an existing item
         // echo "testing";
 
-        $data = $this->lessonPlan->find($id);
+        $data = $this->Pedagogys->find($id);
 
 
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('LessonPlans/edit',["data" => $data]);
+        echo view('Pedagogys/edit',["data" => $data]);
         echo view('footer');
 
     }
@@ -85,23 +82,20 @@ class LessonPlansController extends BaseController
         // Update the item in the database
 
         $data = [
-            'lessonPlan_title'  => $this->request->getPost('lessonPlan_title'),
-            'subject_id' => $this->request->getPost('subject_id'),
-            'description' => $this->request->getPost('description'),
-            'file' => $this->request->getPost('file')
+            'pedagogy'  => $this->request->getPost('pedagogy')
         ];
 
-        $this->lessonPlan->update($id, $data);
-        session()->setFlashdata('success', 'Lesson Plan Edited');
-        return redirect()->to(base_url('lesson-plans'));
+        $this->Pedagogys->update($id, $data);
+        session()->setFlashdata('success', 'Pedagogy Edited');
+        return redirect()->to(base_url('pedagogys'));
     }
 
     public function delete($id) {
         // Delete the item from the database
 
-        $this->lessonPlan->delete($id);
-        session()->setFlashdata('success', 'Lesson Plan Deleted');
-        return redirect()->to(base_url('lesson-plans'));
+        $this->Pedagogys->delete($id);
+        session()->setFlashdata('success', 'Pedagogy Deleted');
+        return redirect()->to(base_url('pedagogys'));
     }
    
 }

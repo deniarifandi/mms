@@ -2,14 +2,14 @@
 
 namespace App\Controllers;
 
-use App\Models\lessonPlan;
+use App\Models\Presentation;
 
-class LessonPlansController extends BaseController
+class PresentationsController extends BaseController
 {
 
     function __construct(){
         
-        $this->lessonPlan = new \App\Models\lessonPlan();
+        $this->Presentations = new \App\Models\Presentation();
         $data['successMessage'] = session()->getFlashdata('success');
         $data['errorMessage'] = session()->getFlashdata('error');
 
@@ -25,22 +25,22 @@ class LessonPlansController extends BaseController
 
     public function index() {
         // Show list of items
-        $lessonPlans = $this->lessonPlan
-        ->orderBy('lessonPlan_id','desc')
+        $presentations = $this->Presentations
+        ->orderBy('presentation_id','desc')
         ->findAll();
         
-        // echo json_encode($lessonPlan);
+        // echo json_encode($presentations);
 
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('LessonPlans/index',['lessonPlans' => $lessonPlans]);
+        echo view('presentations/index',['presentations' => $presentations]);
         echo view('footer');
     }
 
     public function show($id) {
         // Show a single item by ID
-        $data = $this->lessonPlan->find($id);
+        $data = $this->Presentations->find($id);
         echo json_encode($data);
     }
 
@@ -49,34 +49,30 @@ class LessonPlansController extends BaseController
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('LessonPlans/create');
+        echo view('Presentations/create');
         echo view('footer');
     }
 
     public function store() {
-
-        $this->lessonPlan->save([
-            'lessonPlan_title' => $this->request->getPost('lessonPlan_title'),
-            'subject_id' => $this->request->getPost('subject_id'),
-            'description' => $this->request->getPost('description'),
-            'file' => $this->request->getPost('file')
+    
+        $this->Presentations->save([
+            'presentation' => $this->request->getPost('presentation')
         ]);
 
-
-        return redirect()->to(base_url('lesson-plans'));
+        return redirect()->to(base_url('presentations'));
     }
 
     public function edit($id) {
         // Show a form to edit an existing item
         // echo "testing";
 
-        $data = $this->lessonPlan->find($id);
+        $data = $this->Presentations->find($id);
 
 
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('LessonPlans/edit',["data" => $data]);
+        echo view('Presentations/edit',["data" => $data]);
         echo view('footer');
 
     }
@@ -85,23 +81,20 @@ class LessonPlansController extends BaseController
         // Update the item in the database
 
         $data = [
-            'lessonPlan_title'  => $this->request->getPost('lessonPlan_title'),
-            'subject_id' => $this->request->getPost('subject_id'),
-            'description' => $this->request->getPost('description'),
-            'file' => $this->request->getPost('file')
+            'presentation'  => $this->request->getPost('presentation')
         ];
 
-        $this->lessonPlan->update($id, $data);
-        session()->setFlashdata('success', 'Lesson Plan Edited');
-        return redirect()->to(base_url('lesson-plans'));
+        $this->Presentations->update($id, $data);
+        session()->setFlashdata('success', 'Presentation Edited');
+        return redirect()->to(base_url('presentations'));
     }
 
     public function delete($id) {
         // Delete the item from the database
 
-        $this->lessonPlan->delete($id);
-        session()->setFlashdata('success', 'Lesson Plan Deleted');
-        return redirect()->to(base_url('lesson-plans'));
+        $this->Presentations->delete($id);
+        session()->setFlashdata('success', 'Presentation Deleted');
+        return redirect()->to(base_url('presentations'));
     }
    
 }
