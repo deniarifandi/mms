@@ -14,7 +14,7 @@ class Cases extends Model
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['case_study', 'created_at', 'updated_at','deleted_at'];
+    protected $allowedFields = ['case_study','case_id','subject_id','description','file', 'created_at', 'updated_at','deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

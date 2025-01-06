@@ -10,6 +10,7 @@ class CasesController extends BaseController
     function __construct(){
         
         $this->Cases = new \App\Models\Cases();
+        $this->subject = new \App\Models\Subject();
         $data['successMessage'] = session()->getFlashdata('success');
         $data['errorMessage'] = session()->getFlashdata('error');
 
@@ -27,6 +28,8 @@ class CasesController extends BaseController
         // Show list of items
         $cases = $this->Cases
         ->orderBy('case_id','desc')
+        ->join('subjects','cases.subject_id = subjects.subject_id')
+        ->where('subjects.deleted_at',null)
         ->findAll();
         
         // echo json_encode($cases);
@@ -45,36 +48,44 @@ class CasesController extends BaseController
     }
 
     public function create() {
+
+        $subjects = $this->subject->findAll();
         // Show a form to create a new item
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('Cases/create');
+        echo view('Cases/create',['subjects'=> $subjects]);
         echo view('footer');
     }
 
     public function store() {
-        // Store a newly created item in the database
         
-        // $validation =  \Config\Services::validation();
-        // $validation->setRules([
-        //     'case_name' => 'required|min_length[5]',
-        //     'email' => 'required|valid_email',
-        // ]);
+        $subject_id = $this->request->getPost('subject_id');
+        $file = $this->request->getFile('file');
+        $newName = null;
+        $path = WRITEPATH . 'uploads/' . $subject_id;
 
-        // if (!$this->validate([
-        //     'case_name'  => 'required|min_length[5]',
-        //     'email' => 'required|valid_email',
-        // ])) {
-        //     // Store error message in flashdata
-        //     session()->setFlashdata('error', 'Validation failed. Please check your input.');
-        //     return redirect()->to(base_url('cases/create'))->withInput()->with('validation', $validation);
-        // }
+        if ($file->getError() != UPLOAD_ERR_NO_FILE) {
+
+            $newName = $this->uploadFile($file,$path);
+            // print_r($newName);
+            // echo $newName['file'];
+            if (isset($newName['file'])) {
+                session()->setFlashdata('error', $newName['file']);
+                return redirect()->back()->withInput(); // Redirect back to the form with input data
+            }
+            
+        }
 
         $this->Cases->save([
             'case_study' => $this->request->getPost('case_study'),
-          
+            'subject_id' => $subject_id,
+            'description' => $this->request->getPost('description'),
+            'file' => $newName,  // Store the file name in the database
         ]);
+
+         // Set a success message
+        session()->setFlashdata('success', 'Case Created');
 
         return redirect()->to(base_url('cases'));
     }
@@ -82,14 +93,14 @@ class CasesController extends BaseController
     public function edit($id) {
         // Show a form to edit an existing item
         // echo "testing";
-
+        $subjects = $this->subject->findAll();
         $data = $this->Cases->find($id);
 
 
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('Cases/edit',["data" => $data]);
+        echo view('Cases/edit',["data" => $data, "subjects" => $subjects]);
         echo view('footer');
 
     }
@@ -97,9 +108,30 @@ class CasesController extends BaseController
     public function update($id) {
         // Update the item in the database
 
-        $data = [
-            'case_study'  => $this->request->getPost('case_study')
+
+        $subject_id = $this->request->getPost('subject_id');
+        $file = $this->request->getFile('file');
+        
+        $path = WRITEPATH . 'uploads/' . $subject_id;
+        $newName = $this->request->getPost('currentFile');
+
+        if ($file->getError() != UPLOAD_ERR_NO_FILE) {
+
+            $newName = $this->uploadFile($file,$path);
+            // print_r($newName);
+            // echo $newName['file'];
+            if (isset($newName['file'])) {
+                session()->setFlashdata('error', $newName['file']);
+                return redirect()->back()->withInput(); // Redirect back to the form with input data
+            }
             
+        }
+
+        $data = [
+            'case_study'  => $this->request->getPost('case_study'),
+            'subject_id' => $subject_id,
+            'description' => $this->request->getPost('description'),
+            'file' => $newName
         ];
 
         $this->Cases->update($id, $data);
