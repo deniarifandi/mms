@@ -12,38 +12,44 @@
       <?php if (session()->getFlashdata('error')): ?>
         
         <div class="alert alert-primary text-white px-2 py-1 mb-4" role="alert">
-           <?= session()->getFlashdata('error') ?>
+           <?php print_r(session()->getFlashdata('error')); ?>
         </div>
         
       <?php endif; ?>
       
       
-      <form action="store" method="post">
+      <form action="store" method="post" enctype="multipart/form-data">
         <div class="row">
+
+
           <div class="col-md-12">
-            <div class="input-group input-group-outline my-3" id="lessonPlan_title">
-              <label class="form-label">Lesson Plan's Title</label>
+            <label class="form-label">1. Lesson Plan's Title</label>
+            <div class="input-group input-group-static mb-4" id="lessonPlan_title">
               <input type="text" name="lessonPlan_title" class="form-control" value="<?= old('lessonPlan_title') ?>" required>
             </div>
-              <div class="input-group input-group-static mb-4">
-               <label for="exampleFormControlSelect1" class="ms-0">Subject</label>
-               <select class="form-control px-2" name="subject_id" id="exampleFormControlSelect1">
+            
+            <div class="input-group input-group-static mb-4">
+               <label for="exampleFormControlSelect1" class="ms-0">2. Subject</label>
+               <select class="form-control px-2" name="subject_id" id="exampleFormControlSelect1" required>
                 <option value="">-Select Subject-</option>
                 <?php foreach ($subjects as $subject): ?>
                    <option value="<?= $subject['subject_id'] ?>"><?= $subject['subject_name'] ?></option>
                 <?php endforeach ?>
-                
                </select>
              </div>
-             <div class="input-group input-group-outline my-3" id="description">
-              <label class="form-label">Lesson Plan's Description</label>
+            
+            <label class="form-label">3. Lesson Plan's Description</label>
+             <div class="input-group input-group-static mb-4" id="description">
               <input type="text" name="description" class="form-control" value="<?= old('description') ?>" required>
             </div>
-             <div class="input-group input-group-outline my-3" id="file">
-              <label class="form-label">Lesson Plan's File</label>
-              <input type="text" name="file" class="form-control" value="<?= old('file') ?>" required>
+
+            <label class="form-label">4. Lesson Plan's File</label>
+            <div class="input-group input-group-static" id="file">
+              <input type="file" name="file" class="form-control">
             </div>
-              <button class="btn btn-success float-end" type="submit">Save</button>
+          
+              <button class="btn btn-success float-end mt-4" type="submit">Save</button>
+
           </div>
         </div>
       </form>

@@ -54,22 +54,6 @@ class StudentsController extends BaseController
     }
 
     public function store() {
-        // Store a newly created item in the database
-        
-        // $validation =  \Config\Services::validation();
-        // $validation->setRules([
-        //     'student_name' => 'required|min_length[5]',
-        //     'email' => 'required|valid_email',
-        // ]);
-
-        // if (!$this->validate([
-        //     'student_name'  => 'required|min_length[5]',
-        //     'email' => 'required|valid_email',
-        // ])) {
-        //     // Store error message in flashdata
-        //     session()->setFlashdata('error', 'Validation failed. Please check your input.');
-        //     return redirect()->to(base_url('students/create'))->withInput()->with('validation', $validation);
-        // }
 
         $this->Student->save([
             'student_name' => $this->request->getPost('student_name'),
@@ -80,8 +64,6 @@ class StudentsController extends BaseController
     }
 
     public function edit($id) {
-        // Show a form to edit an existing item
-        // echo "testing";
 
         $data = $this->Student->find($id);
 

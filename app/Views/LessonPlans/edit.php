@@ -17,31 +17,44 @@
       <?php endif; ?>
       
       
-      <form action="<?= base_url() ?>/lesson-plans/update/<?= $data['lessonPlan_id'] ?>" method="post">
+      <form action="<?= base_url() ?>lesson-plans/update/<?= $data['lessonPlan_id'] ?>" method="post"  enctype="multipart/form-data">
         <div class="row">
           <div class="col-md-12">
-            <div class="input-group input-group-outline my-3 is-filled" id="lessonPlan_title">
-              <label class="form-label">Lesson Plan's Name</label>
+             <label class="form-label text-dark">1. Lesson Plan's Name</label>
+            <div class="input-group input-group-static mb-4 is-filled" id="lessonPlan_title">
               <input type="text" name="lessonPlan_title" class="form-control" value="<?= $data['lessonPlan_title'] ?>" required>
             </div>
-           <div class="input-group input-group-static mb-4">
-               <label for="exampleFormControlSelect1" class="ms-0">Subject</label>
+             <label for="exampleFormControlSelect1" class="ms-0 text-dark">2. Subject</label>
+           <div class="input-group input-group-static mb-4 is-filled">
+              
                <select class="form-control px-2" name="subject_id" id="exampleFormControlSelect1">
                 <option value="">-Select Subject-</option>
                 <?php foreach ($subjects as $subject): ?>
                    <option value="<?= $subject['subject_id'] ?>"><?= $subject['subject_name'] ?></option>
                 <?php endforeach ?>
-                
                </select>
              </div>
-              <div class="input-group input-group-outline my-3 is-filled" id="description">
-              <label class="form-label">Lesson Plan's Description</label>
+             <label class="form-label text-dark">3. Lesson Plan's Description</label>
+            <div class="input-group input-group-static mb-4 is-filled" id="description">
+              
               <input type="text" name="description" class="form-control" value="<?= $data['description'] ?>" required>
             </div>
-              <div class="input-group input-group-outline my-3 is-filled" id="file">
-              <label class="form-label">File Lesson Plan</label>
-              <input type="text" name="file" class="form-control" value="<?= $data['file'] ?>" required>
+
+
+            <label class="form-label text-dark">4. Lesson Plan's File</label>
+            <div class="input-group input-group-static" id="file">
+                 <input type="file" name="file" id="file">
+                  <!-- Display the current file name if it exists -->
+                  <?php if (!empty($data['file'])): ?>
+                      <p>Current file: <strong><?= $data['file'] ?></strong></p>
+                      <input type="hidden" name="currentFile" value="<?= $data['file']?>" readonly>
+                   <a class="btn btn-sm btn-success" href="<?php echo base_url().'lesson-plans/view/'.$data['subject_id'].'/'.$data['file'] ?>">Download</a>
+                  <?php endif; ?>
             </div>
+
+
+
+
               <button class="btn btn-success float-end" type="submit">Save</button>
           </div>
         </div>
@@ -49,3 +62,14 @@
     </div>
   </div>
 </div>
+
+<script>
+    // Replace 'your_desired_value' with the value you want to select.
+    var selectedValue = '<?= $data['subject_id'] ?>'; // Example: '2'
+
+    // Get the select element by its ID
+    var selectElement = document.getElementById('exampleFormControlSelect1');
+
+    // Set the selected option based on the value
+    selectElement.value = selectedValue;
+</script>

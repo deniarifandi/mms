@@ -24,6 +24,7 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Lesson Plan ID</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Lesson Plan Name</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Subject</th>
+                      <th>File</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                       
                     </tr>
@@ -34,6 +35,13 @@
                       <td><?= $lessonPlan['lessonPlan_id'] ?></td>
                       <td><?= $lessonPlan['lessonPlan_title'] ?></td>
                       <td><?= $lessonPlan['subject_name'] ?></td>
+                      <td>
+                        <?php if (!empty($lessonPlan['file'])): ?>
+                         <a class="btn btn-sm btn-success mb-0" href="<?php echo base_url().'lesson-plans/view/'.$lessonPlan['subject_id'].'/'.$lessonPlan['file'] ?>">Download</a>
+                        <?php else: ?> 
+                           <a class="btn btn-sm btn-secondary mb-0" style="pointer-events: none;">No File</a>
+                        <?php endif; ?>
+                      </td>
                       <td>
                         <a class="btn btn-primary btn-sm mb-0" href="lesson-plans/edit/<?= $lessonPlan['lessonPlan_id'] ?>">Edit</a>
                         <a class="btn btn-danger btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick='modalConfirmation(<?= json_encode($lessonPlan); ?>)'>Delete</a>
@@ -80,7 +88,7 @@
 
 <script type="text/javascript">
   new DataTable('#lessonPlansTable', {
-      order: [[1, 'asc']]
+      order: [[0, 'desc']]
   });
 </script>
 

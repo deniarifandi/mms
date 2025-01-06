@@ -65,6 +65,8 @@ $routes->group('/lesson-plans',static function ($routes){
 	$routes->get('edit/(:num)','lessonPlansController::edit/$1');
 	$routes->post('update/(:num)','lessonPlansController::update/$1');
 	$routes->delete('delete/(:num)','lessonPlansController::delete/$1');
+
+	$routes->get('view/(:any)/(:any)','lessonPlansController::view/$1/$2');
 });
 
 $routes->group('/pedagogys',static function ($routes){
