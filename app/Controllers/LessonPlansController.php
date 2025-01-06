@@ -5,11 +5,15 @@ namespace App\Controllers;
 use App\Models\lessonPlan;
 use App\Models\Subject;
 
+use App\Libraries\fileManager;
+
 class LessonPlansController extends BaseController
 {
 
     function __construct(){
         
+        $this->lib = new fileManager();
+
         $this->lessonPlan = new \App\Models\lessonPlan();
         $this->subject = new \App\Models\Subject();
         $data['successMessage'] = session()->getFlashdata('success');
@@ -68,7 +72,13 @@ class LessonPlansController extends BaseController
         $path = WRITEPATH . 'uploads/' . $subject_id;
 
         if ($file->getError() != UPLOAD_ERR_NO_FILE) {
-            $newName = $this->uploadFile($file,$path);
+
+            $validationResult = $this->lib->validateFile($file);
+            if ($validationResult !== true) {
+                return redirect()->back()->with('errors', $validationResult);
+            }
+
+            //$fileManager->processFile($file);
         }
 
         // Save lesson plan data in the database
@@ -103,43 +113,7 @@ class LessonPlansController extends BaseController
 
     }
 
-    public function uploadFile($file,$path){
-
-        // Validation rules
-        $rules = [
-            'file' => [
-                'label' => 'File',
-                'rules' => 'uploaded[file]|max_size[file,1024]|ext_in[file,doc,docx,ppt,pptx,pdf]', // Max size in KB, allowed extensions
-            ],
-        ];
-
-        // Validate the file input
-        if (!$this->validate($rules)) {
-            // If validation fails, set flashdata error and return to the form
-            session()->setFlashdata('error', $this->validator->getErrors());
-            return redirect()->back()->withInput(); // Redirect back to the form with input data
-        }
-
-        if ($file->isValid() && !$file->hasMoved()) {
-            // Generate a random name for the file
-            $newName = $file->getRandomName();
-
-            // Ensure the target directory exists
-            $uploadPath = $path;
-            if (!is_dir($uploadPath)) {
-                mkdir($uploadPath, 0777, true); // Create directory if it doesn't exist
-            }
-
-            // Move the uploaded file to the target directory
-            $file->move($uploadPath, $newName);
-        } else {
-            // Handle error if the file is not valid
-            session()->setFlashdata('error', 'File upload failed.');
-            return redirect()->back()->withInput(); // Redirect back to the form with input data
-        }
-
-        return $newName;
-    }
+   
 
     public function update($id) {
         // Update the item in the database
