@@ -73,14 +73,16 @@ class LessonPlansController extends BaseController
 
         if ($file->getError() != UPLOAD_ERR_NO_FILE) {
 
-            $validationResult = $this->lib->validateFile($file);
-            if ($validationResult !== true) {
-                return redirect()->back()->with('errors', $validationResult);
+            $newName = $this->uploadFile($file,$path);
+            // print_r($newName);
+            // echo $newName['file'];
+            if (isset($newName['file'])) {
+                session()->setFlashdata('error', $newName['file']);
+                return redirect()->back()->withInput(); // Redirect back to the form with input data
             }
-
-            //$fileManager->processFile($file);
+            
         }
-
+     
         // Save lesson plan data in the database
         $this->lessonPlan->save([
             'lessonPlan_title' => $this->request->getPost('lessonPlan_title'),
@@ -124,10 +126,16 @@ class LessonPlansController extends BaseController
         $path = WRITEPATH . 'uploads/' . $subject_id;
         $newName = $this->request->getPost('currentFile');
 
-        // echo $newName;
-        
         if ($file->getError() != UPLOAD_ERR_NO_FILE) {
+
             $newName = $this->uploadFile($file,$path);
+            // print_r($newName);
+            // echo $newName['file'];
+            if (isset($newName['file'])) {
+                session()->setFlashdata('error', $newName['file']);
+                return redirect()->back()->withInput(); // Redirect back to the form with input data
+            }
+            
         }
 
         $data = [
