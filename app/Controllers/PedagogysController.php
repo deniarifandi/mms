@@ -28,9 +28,9 @@ class PedagogysController extends BaseController
         // Show list of items
         $pedagogys = $this->Pedagogys
         ->orderBy('pedagogy_id','desc')
+        ->join('subjects','pedagogys.subject_id = subjects.subject_id')
+        ->where('subjects.deleted_at',null)
         ->findAll();
-        
-        // echo json_encode($pedagogys);
 
         echo view('header',$this->allComp);
         echo view('sidebar');
