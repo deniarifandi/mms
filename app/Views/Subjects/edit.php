@@ -17,7 +17,7 @@
       <?php endif; ?>
       
       
-      <form action="<?= base_url() ?>/subjects/update/<?= $data['subject_id'] ?>" method="post">
+      <form action="<?= base_url() ?>subjects/update/<?= $data['subject_id'] ?>" method="post" enctype="multipart/form-data">
         <div class="row">
           <div class="col-md-12">
             <div class="input-group input-group-outline my-3 is-filled" id="subject_name">
@@ -27,8 +27,20 @@
             <div class="input-group input-group-outline my-3 is-filled" id="description">
               <label class="form-label">Subject's Description</label>
               <input type="text" name="description" class="form-control" value="<?= $data['description'] ?>" required>
-
             </div>
+
+             <label class="form-label text-dark">3. Subject's Image <sup>*(png,jpg,jpeg / 1MB Max)</sup></label>
+            <div class="input-group input-group-static" id="file">
+               <input type="file" name="file" id="file">
+               <!-- Display the current file name if it exists -->
+               <?php if (!empty($data['image'])): ?>
+                <p>Current file: <strong><?= $data['image'] ?></strong></p>
+                <input type="hidden" name="currentFile" value="<?= $data['image']?>" readonly>
+                <a class="btn btn-sm btn-success" target="_blank" href="<?php echo base_url().'subjects/view/'.$data['image'] ?>">Download</a>
+              <?php endif; ?>
+            </div>
+
+
               <button class="btn btn-success float-end" type="submit">Save</button>
           </div>
         </div>

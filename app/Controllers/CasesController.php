@@ -107,8 +107,7 @@ class CasesController extends BaseController
 
     public function update($id) {
         // Update the item in the database
-
-
+        
         $subject_id = $this->request->getPost('subject_id');
         $file = $this->request->getFile('file');
         

@@ -23,6 +23,7 @@
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Subject ID</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Subject Name</th>
+                      <th>Image</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                       
                     </tr>
@@ -32,6 +33,13 @@
                       <tr>
                       <td><?= $subject['subject_id'] ?></td>
                       <td><?= $subject['subject_name'] ?></td>
+                      <td>
+                        <?php if (!empty($subject['image'])): ?>
+                         <a target="_blank" class="btn btn-sm btn-success mb-0" href="<?php echo base_url().'subjects/view/'.$subject['image'] ?>">View Image</a>
+                        <?php else: ?> 
+                           <a class="btn btn-sm btn-secondary mb-0" style="pointer-events: none;">No File</a>
+                        <?php endif; ?>
+                      </td>
                       <td>
                         <a class="btn btn-primary btn-sm mb-0" href="subjects/edit/<?= $subject['subject_id'] ?>">Edit</a>
                         <a class="btn btn-danger btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick='modalConfirmation(<?= json_encode($subject); ?>)'>Delete</a>

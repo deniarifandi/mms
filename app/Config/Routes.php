@@ -35,6 +35,8 @@ $routes->group('/subjects',static function ($routes){
 	$routes->get('edit/(:num)','SubjectsController::edit/$1');
 	$routes->post('update/(:num)','SubjectsController::update/$1');
 	$routes->delete('delete/(:num)','SubjectsController::delete/$1');
+
+	$routes->get('view/(:any)','SubjectsController::view/$1');
 });
 
 $routes->group('/objectives',static function ($routes){

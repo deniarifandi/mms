@@ -55,10 +55,24 @@ class SubjectsController extends BaseController
 
     public function store() {
 
+        $file = $this->request->getFile('file');
+        $newName = null;
+        $path = WRITEPATH . 'uploads/subjectImage/';
+
+        if ($file->getError() != UPLOAD_ERR_NO_FILE) {
+
+            $newName = $this->uploadImage($file,$path);
+            
+            if (isset($newName['file'])) {
+                session()->setFlashdata('error', $newName['file']);
+                return redirect()->back()->withInput(); // Redirect back to the form with input data
+            }
+        }
 
         $this->Subject->save([
             'subject_name' => $this->request->getPost('subject_name'),
-            'description' => $this->request->getPost('description')
+            'description' => $this->request->getPost('description'),
+            'image' => $newName
         ]);
 
         return redirect()->to(base_url('subjects'));
@@ -81,10 +95,24 @@ class SubjectsController extends BaseController
 
     public function update($id) {
         // Update the item in the database
+        $file = $this->request->getFile('file');
+        $newName = null;
+        $path = WRITEPATH . 'uploads/subjectImage/';
+        $newName = $this->request->getPost('currentFile');
+        if ($file->getError() != UPLOAD_ERR_NO_FILE) {
+
+            $newName = $this->uploadImage($file,$path);
+            
+            if (isset($newName['file'])) {
+                session()->setFlashdata('error', $newName['file']);
+                return redirect()->back()->withInput(); // Redirect back to the form with input data
+            }
+        }
 
         $data = [
             'subject_name'  => $this->request->getPost('subject_name'),
-            'description' => $this->request->getPost('description')
+            'description' => $this->request->getPost('description'),
+            'image' => $newName
         ];
 
         $this->Subject->update($id, $data);
@@ -98,6 +126,25 @@ class SubjectsController extends BaseController
         $this->Subject->delete($id);
         session()->setFlashdata('success', 'subject Deleted');
         return redirect()->to(base_url('subjects'));
+    }
+
+    public function view($filename){
+        
+         $imagePath = WRITEPATH . 'uploads/subjectImage/'.$filename;
+
+        // Check if the file exists
+        if (!file_exists($imagePath)) {
+            // Return 404 response if file not found
+            return $this->response->setStatusCode(404, 'Image not found');
+        }
+
+        // Get the file's mime type
+        $mimeType = mime_content_type($imagePath);
+
+        // Set the response headers and send the image
+        return $this->response
+            ->setContentType($mimeType)
+            ->setBody(file_get_contents($imagePath));
     }
    
 }

@@ -26,32 +26,32 @@
               <input type="text" name="case_study" class="form-control" value="<?= $data['case_study'] ?>" required>
             </div>
             <label for="exampleFormControlSelect1" class="ms-0 text-dark">2. Subject</label>
-      <div class="input-group input-group-static mb-4 is-filled">
-        
-       <select class="form-control px-2" name="subject_id" id="exampleFormControlSelect1">
-        <option value="">-Select Subject-</option>
-        <?php foreach ($subjects as $subject): ?>
-         <option value="<?= $subject['subject_id'] ?>"><?= $subject['subject_name'] ?></option>
-       <?php endforeach ?>
-     </select>
-   </div>
-   <label class="form-label text-dark">3. Case Study's Description</label>
-   <div class="input-group input-group-static mb-4 is-filled" id="description">
-    
-    <input type="text" name="description" class="form-control" value="<?= $data['description'] ?>" required>
-  </div>
+            <div class="input-group input-group-static mb-4 is-filled">
+              
+                 <select class="form-control px-2" name="subject_id" id="exampleFormControlSelect1">
+                  <option value="">-Select Subject-</option>
+                  <?php foreach ($subjects as $subject): ?>
+                   <option value="<?= $subject['subject_id'] ?>"><?= $subject['subject_name'] ?></option>
+                 <?php endforeach ?>
+               </select>
+            </div>
+            <label class="form-label text-dark">3. Case Study's Description</label>
+            <div class="input-group input-group-static mb-4 is-filled" id="description">
+              
+            <input type="text" name="description" class="form-control" value="<?= $data['description'] ?>" required>
+            </div>
 
 
-  <label class="form-label text-dark">4. Case Study's File <sup>*(doc,docx,ppt,pptx,pdf)</sup></label>
-  <div class="input-group input-group-static" id="file">
-     <input type="file" name="file" id="file">
-     <!-- Display the current file name if it exists -->
-     <?php if (!empty($data['file'])): ?>
-      <p>Current file: <strong><?= $data['file'] ?></strong></p>
-      <input type="hidden" name="currentFile" value="<?= $data['file']?>" readonly>
-      <a class="btn btn-sm btn-success" href="<?php echo base_url().'lesson-plans/view/'.$data['subject_id'].'/'.$data['file'] ?>">Download</a>
-    <?php endif; ?>
-  </div>
+            <label class="form-label text-dark">4. Case Study's File <sup>*(doc,docx,ppt,pptx,pdf / 3MB Max)</sup></label>
+            <div class="input-group input-group-static" id="file">
+               <input type="file" name="file" id="file">
+               <!-- Display the current file name if it exists -->
+               <?php if (!empty($data['file'])): ?>
+                <p>Current file: <strong><?= $data['file'] ?></strong></p>
+                <input type="hidden" name="currentFile" value="<?= $data['file']?>" readonly>
+                <a class="btn btn-sm btn-success" href="<?php echo base_url().'lesson-plans/view/'.$data['subject_id'].'/'.$data['file'] ?>">Download</a>
+              <?php endif; ?>
+            </div>
       
 
               <button class="btn btn-success float-end" type="submit">Save</button>

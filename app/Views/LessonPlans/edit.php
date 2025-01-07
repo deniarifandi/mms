@@ -41,7 +41,7 @@
   </div>
 
 
-  <label class="form-label text-dark">4. Lesson Plan's File <sup>*(doc,docx,ppt,pptx,pdf)</sup></label>
+  <label class="form-label text-dark">4. Lesson Plan's File <sup>*(doc,docx,ppt,pptx,pdf / 3MB Max)</sup></label>
   <div class="input-group input-group-static" id="file">
      <input type="file" name="file" id="file">
      <!-- Display the current file name if it exists -->

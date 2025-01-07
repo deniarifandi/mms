@@ -14,7 +14,7 @@ class Presentation extends Model
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['presentation', 'created_at', 'updated_at','deleted_at'];
+    protected $allowedFields = ['presentation_id','presentation','subject_id','description','file', 'created_at', 'updated_at','deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

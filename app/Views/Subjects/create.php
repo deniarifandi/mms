@@ -18,18 +18,25 @@
       <?php endif; ?>
       
       
-      <form action="store" method="post">
+      <form action="store" method="post" enctype="multipart/form-data">
         <div class="row">
           <div class="col-md-12">
             <div class="input-group input-group-outline my-3" id="subject_name">
-              <label class="form-label">Subject's Title</label>
+              <label class="form-label">1. Subject's Title</label>
               <input type="text" name="subject_name" class="form-control" value="<?= old('subject_name') ?>" required>
             </div>
             <div class="input-group input-group-outline my-3" id="description">
-              <label class="form-label">Subject's Description</label>
+              <label class="form-label">2. Subject's Description</label>
               <input type="text" name="description" class="form-control" value="<?= old('description') ?>" required>
-
             </div>
+
+
+            <label class="form-label">3. Subject Image <sup>*(jpg,jpeg,png / 1MB Max)</sup></label>
+            <div class="input-group input-group-outline" id="file">
+              <input type="file" name="file" class="form-control">
+            </div>
+
+
               <button class="btn btn-success float-end" type="submit">Save</button>
           </div>
         </div>

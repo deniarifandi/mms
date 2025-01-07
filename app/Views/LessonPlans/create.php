@@ -43,7 +43,7 @@
               <input type="text" name="description" class="form-control" value="<?= old('description') ?>" required>
             </div>
 
-            <label class="form-label">4. Lesson Plan's File (doc,docx,ppt,pptx,pdf)</label>
+            <label class="form-label">4. Lesson Plan's File <sup>*(doc,docx,ppt,pptx,pdf / 3MB Max)</sup></label>
             <div class="input-group input-group-static" id="file">
               <input type="file" name="file" class="form-control">
             </div>
