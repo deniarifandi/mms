@@ -18,13 +18,34 @@
       <?php endif; ?>
       
       
-      <form action="store" method="post">
+      <form action="store" method="post" enctype="multipart/form-data">
         <div class="row">
           <div class="col-md-12">
-            <div class="input-group input-group-outline my-3" id="pedagogy">
-              <label class="form-label">Pedagogy's</label>
+            
+            <label class="form-label">1. Pedagogy's</label>
+            <div class="input-group input-group-static mb-3" id="pedagogy">
               <input type="text" name="pedagogy" class="form-control" value="<?= old('pedagogy') ?>" required>
 
+            </div>
+
+            <div class="input-group input-group-static mb-4">
+               <label for="exampleFormControlSelect1" class="ms-0">2. Subject</label>
+               <select class="form-control px-2" name="subject_id" id="exampleFormControlSelect1" required>
+                <option value="">-Select Subject-</option>
+                <?php foreach ($subjects as $subject): ?>
+                   <option value="<?= $subject['subject_id'] ?>"><?= $subject['subject_name'] ?></option>
+                <?php endforeach ?>
+               </select>
+             </div>
+            
+            <label class="form-label">3. Pedagogys's Description</label>
+             <div class="input-group input-group-static mb-4" id="description">
+              <input type="text" name="description" class="form-control" value="<?= old('description') ?>" required>
+            </div>
+
+            <label class="form-label">4. Pedagogys's File <sup>*(doc,docx,ppt,pptx,pdf / 3MB Max)</sup></label>
+            <div class="input-group input-group-outline" id="file">
+              <input type="file" name="file" class="form-control">
             </div>
         
               <button class="btn btn-success float-end" type="submit">Save</button>

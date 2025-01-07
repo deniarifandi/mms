@@ -14,7 +14,7 @@ class Pedagogy extends Model
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['pedagogy','created_at', 'updated_at','deleted_at'];
+    protected $allowedFields = ['pedagogy_id','pedagogy','created_at','subject_id','description','file', 'updated_at','deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

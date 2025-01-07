@@ -10,6 +10,7 @@ class PedagogysController extends BaseController
     function __construct(){
         
         $this->Pedagogys = new \App\Models\Pedagogy();
+        $this->subject = new \App\Models\Subject();
         $data['successMessage'] = session()->getFlashdata('success');
         $data['errorMessage'] = session()->getFlashdata('error');
 
@@ -45,20 +46,42 @@ class PedagogysController extends BaseController
     }
 
     public function create() {
+
+         $subjects = $this->subject->findAll();
         // Show a form to create a new item
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('Pedagogys/create');
+        echo view('Pedagogys/create',['subjects'=> $subjects]);
         echo view('footer');
     }
 
     public function store() {
-      
+        
+         $subject_id = $this->request->getPost('subject_id');
+        $file = $this->request->getFile('file');
+        $newName = null;
+        $path = WRITEPATH . 'uploads/pedagogys/';
+
+        if ($file->getError() != UPLOAD_ERR_NO_FILE) {
+
+            $newName = $this->uploadFile($file,$path);
+        
+            if (isset($newName['file'])) {
+                session()->setFlashdata('error', $newName['file']);
+                return redirect()->back()->withInput(); // Redirect back to the form with input data
+            }
+            
+        }
 
         $this->Pedagogys->save([
-            'pedagogy' => $this->request->getPost('pedagogy')
+            'pedagogy' => $this->request->getPost('pedagogy'),
+            'subject_id' => $subject_id,
+            'description' => $this->request->getPost('description'),
+            'file' => $newName  // Store the file name in the database
         ]);
+
+        session()->setFlashdata('success', 'Pedagogy Created');
 
         return redirect()->to(base_url('pedagogys'));
     }
