@@ -89,14 +89,14 @@ class PedagogysController extends BaseController
     public function edit($id) {
         // Show a form to edit an existing item
         // echo "testing";
-
+        $subjects = $this->subject->findAll();
         $data = $this->Pedagogys->find($id);
 
 
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('Pedagogys/edit',["data" => $data]);
+        echo view('Pedagogys/edit',["data" => $data,"subjects" => $subjects]);
         echo view('footer');
 
     }
@@ -104,8 +104,29 @@ class PedagogysController extends BaseController
     public function update($id) {
         // Update the item in the database
 
+        $subject_id = $this->request->getPost('subject_id');
+        $file = $this->request->getFile('file');
+        
+        $path = WRITEPATH . 'uploads/' . $subject_id;
+        $newName = $this->request->getPost('currentFile');
+
+        if ($file->getError() != UPLOAD_ERR_NO_FILE) {
+
+            $newName = $this->uploadFile($file,$path);
+            // print_r($newName);
+            // echo $newName['file'];
+            if (isset($newName['file'])) {
+                session()->setFlashdata('error', $newName['file']);
+                return redirect()->back()->withInput(); // Redirect back to the form with input data
+            }
+            
+        }
+
         $data = [
-            'pedagogy'  => $this->request->getPost('pedagogy')
+            'pedagogy'  => $this->request->getPost('pedagogy'),
+            'subject_id' => $subject_id,
+            'description' => $this->request->getPost('description'),
+            'file' => $newName
         ];
 
         $this->Pedagogys->update($id, $data);
@@ -120,5 +141,16 @@ class PedagogysController extends BaseController
         session()->setFlashdata('success', 'Pedagogy Deleted');
         return redirect()->to(base_url('pedagogys'));
     }
+
+      public function view($filename){
+
+        $path = WRITEPATH . 'uploads/pedagogys/'. $filename;
+        if (file_exists($path)) {
+            return $this->response->setContentType(mime_content_type($path))->setBody(file_get_contents($path));
+        }
+        throw new \CodeIgniter\Exceptions\PageNotFoundException("File not found: $filename");
+
+    }
+   
    
 }

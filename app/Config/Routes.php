@@ -79,6 +79,8 @@ $routes->group('/pedagogys',static function ($routes){
 	$routes->get('edit/(:num)','PedagogysController::edit/$1');
 	$routes->post('update/(:num)','PedagogysController::update/$1');
 	$routes->delete('delete/(:num)','PedagogysController::delete/$1');
+
+	$routes->get('view/(:any)','PedagogysController::view/$1');
 });
 
 $routes->group('/microcredentials',static function ($routes){

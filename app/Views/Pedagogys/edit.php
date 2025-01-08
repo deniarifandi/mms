@@ -17,7 +17,7 @@
       <?php endif; ?>
       
       
-      <form action="<?= base_url() ?>/pedagogys/update/<?= $data['pedagogy_id'] ?>" method="post">
+      <form action="<?= base_url() ?>/pedagogys/update/<?= $data['pedagogy_id'] ?>" method="post" enctype="multipart/form-data">
         <div class="row">
           <div class="col-md-12">
             <div class="input-group input-group-outline my-3 is-filled" id="pedagogy">
@@ -25,6 +25,35 @@
               <input type="text" name="pedagogy" class="form-control" value="<?= $data['pedagogy'] ?>" required>
 
             </div>
+
+              <label for="exampleFormControlSelect1" class="ms-0 text-dark">2. Subject</label>
+            <div class="input-group input-group-static mb-4 is-filled">
+              
+                 <select class="form-control px-2" name="subject_id" id="exampleFormControlSelect1">
+                  <option value="">-Select Subject-</option>
+                  <?php foreach ($subjects as $subject): ?>
+                   <option value="<?= $subject['subject_id'] ?>"><?= $subject['subject_name'] ?></option>
+                 <?php endforeach ?>
+               </select>
+            </div>
+            <label class="form-label text-dark">3. Pegagogy's Description</label>
+            <div class="input-group input-group-static mb-4 is-filled" id="description">
+              
+            <input type="text" name="description" class="form-control" value="<?= $data['description'] ?>" required>
+            </div>
+
+
+            <label class="form-label text-dark">4. Pegagogy's File <sup>*(doc,docx,ppt,pptx,pdf / 3MB Max)</sup></label>
+            <div class="input-group input-group-static" id="file">
+               <input type="file" name="file" id="file">
+               <!-- Display the current file name if it exists -->
+               <?php if (!empty($data['file'])): ?>
+                <p>Current file: <strong><?= $data['file'] ?></strong></p>
+                <input type="hidden" name="currentFile" value="<?= $data['file']?>" readonly>
+                <a class="btn btn-sm btn-success" href="<?php echo base_url().'pedagogys/view/'.$data['file'] ?>">Download</a>
+              <?php endif; ?>
+            </div>
+      
           
               <button class="btn btn-success float-end" type="submit">Save</button>
           </div>
@@ -33,3 +62,14 @@
     </div>
   </div>
 </div>
+
+<script>
+    // Replace 'your_desired_value' with the value you want to select.
+    var selectedValue = '<?= $data['subject_id'] ?>'; // Example: '2'
+
+    // Get the select element by its ID
+    var selectElement = document.getElementById('exampleFormControlSelect1');
+
+    // Set the selected option based on the value
+    selectElement.value = selectedValue;
+  </script>

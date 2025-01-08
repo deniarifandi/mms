@@ -23,6 +23,7 @@
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Pedagogy Name</th>
+                      <th>File</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                       
                     </tr>
@@ -32,7 +33,13 @@
                       <tr>
                       <td><?= $pedagogy['pedagogy_id'] ?></td>
                       <td><?= $pedagogy['pedagogy'] ?></td>
-                      
+                      <td>
+                        <?php if (!empty($pedagogy['file'])): ?>
+                         <a class="btn btn-sm btn-success mb-0" href="<?php echo base_url().'pedagogys/view/'.$pedagogy['file'] ?>">Download</a>
+                        <?php else: ?> 
+                           <a class="btn btn-sm btn-secondary mb-0" style="pointer-events: none;">No File</a>
+                        <?php endif; ?>
+                      </td>
                       <td>
                         <a class="btn btn-primary btn-sm mb-0" href="pedagogys/edit/<?= $pedagogy['pedagogy_id'] ?>">Edit</a>
                         <a class="btn btn-danger btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick='modalConfirmation(<?= json_encode($pedagogy); ?>)'>Delete</a>
