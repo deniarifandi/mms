@@ -91,6 +91,8 @@ $routes->group('/microcredentials',static function ($routes){
 	$routes->get('edit/(:num)','MicrocredentialsController::edit/$1');
 	$routes->post('update/(:num)','MicrocredentialsController::update/$1');
 	$routes->delete('delete/(:num)','MicrocredentialsController::delete/$1');
+
+	$routes->get('view/(:any)','MicrocredentialsController::view/$1');
 });
 
 $routes->group('/cases',static function ($routes){

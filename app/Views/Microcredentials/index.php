@@ -23,7 +23,7 @@
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Microcredential Name</th>
-                    
+                        <th>File</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                       
                     </tr>
@@ -33,7 +33,13 @@
                       <tr>
                       <td><?= $microcredential['microcredential_id'] ?></td>
                       <td><?= $microcredential['microcredential'] ?></td>
-                  
+                    <td>
+                        <?php if (!empty($microcredential['file'])): ?>
+                         <a class="btn btn-sm btn-success mb-0" href="<?php echo base_url().'microcredentials/view/'.$microcredential['file'] ?>">Download</a>
+                        <?php else: ?> 
+                           <a class="btn btn-sm btn-secondary mb-0" style="pointer-events: none;">No File</a>
+                        <?php endif; ?>
+                      </td>
                       <td>
                         <a class="btn btn-primary btn-sm mb-0" href="microcredentials/edit/<?= $microcredential['microcredential_id'] ?>">Edit</a>
                         <a class="btn btn-danger btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick='modalConfirmation(<?= json_encode($microcredential); ?>)'>Delete</a>

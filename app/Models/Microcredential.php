@@ -14,7 +14,7 @@ class Microcredential extends Model
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['microcredential','created_at', 'updated_at','deleted_at'];
+    protected $allowedFields = ['microcredential_id','microcredential','subject_id','description','file','created_at', 'updated_at','deleted_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
