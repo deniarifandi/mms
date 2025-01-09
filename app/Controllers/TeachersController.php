@@ -34,7 +34,7 @@ class TeachersController extends BaseController
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('teachers/index',['teachers' => $teachers]);
+        echo view('Teachers/index',['teachers' => $teachers]);
         echo view('footer');
     }
 
