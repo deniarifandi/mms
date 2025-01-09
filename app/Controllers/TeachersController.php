@@ -55,25 +55,11 @@ class TeachersController extends BaseController
 
     public function store() {
         // Store a newly created item in the database
-        
-        // $validation =  \Config\Services::validation();
-        // $validation->setRules([
-        //     'teacher_name' => 'required|min_length[5]',
-        //     'email' => 'required|valid_email',
-        // ]);
-
-        // if (!$this->validate([
-        //     'teacher_name'  => 'required|min_length[5]',
-        //     'email' => 'required|valid_email',
-        // ])) {
-        //     // Store error message in flashdata
-        //     session()->setFlashdata('error', 'Validation failed. Please check your input.');
-        //     return redirect()->to(base_url('teachers/create'))->withInput()->with('validation', $validation);
-        // }
 
         $this->Teachers->save([
             'teacher_name' => $this->request->getPost('teacher_name'),
             'email' => $this->request->getPost('email'),
+            'pass' => $this->enc($this->request->getPost('pass')),
         ]);
 
         return redirect()->to(base_url('teachers'));
@@ -97,10 +83,21 @@ class TeachersController extends BaseController
     public function update($id) {
         // Update the item in the database
 
-        $data = [
-            'teacher_name'  => $this->request->getPost('teacher_name'),
-            'email' => $this->request->getPost('email')
-        ];
+        if ($this->request->getPost('pass') == "unchanged") {
+            $data = [
+                'teacher_name'  => $this->request->getPost('teacher_name'),
+                'email' => $this->request->getPost('email')
+            ];
+        }else{
+
+            $data = [
+                'teacher_name'  => $this->request->getPost('teacher_name'),
+                'email' => $this->request->getPost('email'),
+                'pass' => $this->enc($this->request->getPost('pass'))
+            ];
+        }
+
+        
 
         $this->Teachers->update($id, $data);
         session()->setFlashdata('success', 'Teacher Edited');

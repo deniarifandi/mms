@@ -17,7 +17,7 @@ class Home extends BaseController
 
     function __construct(){
 
-         $this->db = db_connect();
+        $this->db = db_connect();
         $this->footerboot = view('footerboot');
         $this->breadcrumb = [
             'Pages' => 'pages'
@@ -30,9 +30,75 @@ class Home extends BaseController
         $this->Student = new \App\Models\Student();
     }
 
+    public function showLogin(){
 
+        echo view('login');
 
+    }
 
+    public function checkLogin(){
+
+        $session = session();
+
+        $email = $_POST['email'];
+        $pass = $_POST['pass'];
+
+        $encPass = $this->enc($pass);
+
+        $getAdmin = $this->db->table('administrator')
+        ->where('email',$email)
+        ->where('pass',$encPass)
+        ->get()->getResult();
+
+        if (count($getAdmin)>0) {
+            echo "logged in";
+            $session->set([
+                'username' => $getAdmin[0]->administrator_name,
+                'isLoggedIn' => true,
+                'role' => "admin"
+            ]);
+
+            return redirect()->to(base_url());
+        }else{
+
+            $getTeacher = $this->db->table('teachers')
+            ->where('email',$email)
+            ->where('pass',$encPass)
+            ->get()->getResult();
+
+            if (count($getTeacher)>0) {
+
+                $session->set([
+                    'username' => $getTeacher[0]->teacher_name,
+                    'isLoggedIn' => true,
+                    'role' => "teacher"
+                ]);
+
+                return redirect()->to(base_url());
+            }else{
+                session()->setFlashdata('error', 'Invalid Username/Password');
+                return redirect()->to(base_url('login'));
+                
+            }
+
+            
+        }
+
+    }
+
+    public function logout(){
+        session()->destroy();
+        return redirect()->to(base_url());
+    }
+
+    public function register(){
+
+        $password = "digest25";
+
+        echo $this->enc($password);
+
+    }
+    
     public function index()
     {   
 
@@ -72,11 +138,23 @@ class Home extends BaseController
         ->where('deleted_at',null)
         ->countAll();
 
+        $data = [
+            'students' => $countStudents,
+            'teachers' => $countTeachers,
+            'classes' => $countClasses,
+            'subjects' => $countSubjects,
+            'pedagogys' => $countPedagogys,
+            'microcredentials' => $countMicrocredentials,
+            'lessonPlans' => $countLessonPlans,
+            'cases' => $countCases,
+            'presentations' => $countPresentations,
+        ];
+
 
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('dashboard');
+        echo view('dashboard',['data' => $data]);
         echo view('footer');
     }
 

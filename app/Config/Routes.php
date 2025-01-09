@@ -5,9 +5,14 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Home::index',['filter' => 'auth']);
+$routes->get('/login','Home::showLogin');
+$routes->post('/checkLogin','Home::checkLogin');
+$routes->get('/register','Home::register');
+$routes->get('/logout','Home::logout');
 
-$routes->group('/students',static function ($routes){
+
+$routes->group('/students',['filter' => 'auth'],static function ($routes){
 	$routes->get('/','StudentsController::index');
 	$routes->get('show/(:num)','StudentsController::show/$1');
 	$routes->get('create','StudentsController::create');
@@ -17,7 +22,7 @@ $routes->group('/students',static function ($routes){
 	$routes->delete('delete/(:num)','StudentsController::delete/$1');
 });
 
-$routes->group('/classes',static function ($routes){
+$routes->group('/classes', ['filter' => 'auth'],static function ($routes){
 	$routes->get('/','ClassesController::index');
 	$routes->get('show/(:num)','ClassesController::show/$1');
 	$routes->get('create','ClassesController::create');
@@ -27,7 +32,7 @@ $routes->group('/classes',static function ($routes){
 	$routes->delete('delete/(:num)','ClassesController::delete/$1');
 });
 
-$routes->group('/subjects',static function ($routes){
+$routes->group('/subjects', ['filter' => 'auth'],static function ($routes){
 	$routes->get('/','SubjectsController::index');
 	$routes->get('show/(:num)','SubjectsController::show/$1');
 	$routes->get('create','SubjectsController::create');
@@ -39,7 +44,7 @@ $routes->group('/subjects',static function ($routes){
 	$routes->get('view/(:any)','SubjectsController::view/$1');
 });
 
-$routes->group('/objectives',static function ($routes){
+$routes->group('/objectives', ['filter' => 'auth'],static function ($routes){
 	$routes->get('/','ObjectivesController::index');
 	$routes->get('show/(:num)','ObjectivesController::show/$1');
 	$routes->get('create','ObjectivesController::create');
@@ -49,7 +54,7 @@ $routes->group('/objectives',static function ($routes){
 	$routes->delete('delete/(:num)','ObjectivesController::delete/$1');
 });
 
-$routes->group('/teachers',static function ($routes){
+$routes->group('/teachers', ['filter' => 'auth'],static function ($routes){
 	$routes->get('/','TeachersController::index');
 	$routes->get('show/(:num)','TeachersController::show/$1');
 	$routes->get('create','TeachersController::create');
@@ -59,7 +64,7 @@ $routes->group('/teachers',static function ($routes){
 	$routes->delete('delete/(:num)','TeachersController::delete/$1');
 });
 
-$routes->group('/lesson-plans',static function ($routes){
+$routes->group('/lesson-plans', ['filter' => 'auth'],static function ($routes){
 	$routes->get('/','lessonPlansController::index');
 	$routes->get('show/(:num)','lessonPlansController::show/$1');
 	$routes->get('create','lessonPlansController::create');
@@ -71,7 +76,7 @@ $routes->group('/lesson-plans',static function ($routes){
 	$routes->get('view/(:any)/(:any)','lessonPlansController::view/$1/$2');
 });
 
-$routes->group('/pedagogys',static function ($routes){
+$routes->group('/pedagogys', ['filter' => 'auth'],static function ($routes){
 	$routes->get('/','PedagogysController::index');
 	$routes->get('show/(:num)','PedagogysController::show/$1');
 	$routes->get('create','PedagogysController::create');
@@ -83,7 +88,7 @@ $routes->group('/pedagogys',static function ($routes){
 	$routes->get('view/(:any)','PedagogysController::view/$1');
 });
 
-$routes->group('/microcredentials',static function ($routes){
+$routes->group('/microcredentials', ['filter' => 'auth'],static function ($routes){
 	$routes->get('/','MicrocredentialsController::index');
 	$routes->get('show/(:num)','MicrocredentialsController::show/$1');
 	$routes->get('create','MicrocredentialsController::create');
@@ -95,7 +100,7 @@ $routes->group('/microcredentials',static function ($routes){
 	$routes->get('view/(:any)','MicrocredentialsController::view/$1');
 });
 
-$routes->group('/cases',static function ($routes){
+$routes->group('/cases', ['filter' => 'auth'],static function ($routes){
 	$routes->get('/','CasesController::index');
 	$routes->get('show/(:num)','CasesController::show/$1');
 	$routes->get('create','CasesController::create');
@@ -105,7 +110,7 @@ $routes->group('/cases',static function ($routes){
 	$routes->delete('delete/(:num)','CasesController::delete/$1');
 });
 
-$routes->group('/presentations',static function ($routes){
+$routes->group('/presentations', ['filter' => 'auth'],static function ($routes){
 	$routes->get('/','PresentationsController::index');
 	$routes->get('show/(:num)','PresentationsController::show/$1');
 	$routes->get('create','PresentationsController::create');

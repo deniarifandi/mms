@@ -20,14 +20,20 @@
       <form action="<?= base_url() ?>/teachers/update/<?= $data['teacher_id'] ?>" method="post">
         <div class="row">
           <div class="col-md-12">
-            <div class="input-group input-group-outline my-3 is-filled" id="teacher_name">
-              <label class="form-label">Teacher's Name</label>
+            <label class="form-label">Teacher's Name</label>
+            <div class="input-group input-group-static mb-3 is-filled" id="teacher_name">
+              
               <input type="text" name="teacher_name" class="form-control" value="<?= $data['teacher_name'] ?>" required>
 
             </div>
-            <div class="input-group input-group-outline my-3 is-filled" id="email">
-              <label class="form-label">Teacher's E-mail</label>
+            <label class="form-label">Teacher's E-mail</label>
+            <div class="input-group input-group-static mb-3 is-filled" id="email">
+              
               <input type="text" name="email" class="form-control" value="<?= $data['email'] ?>" required>
+            </div>
+            <label class="form-label">Password</label>
+            <div class="input-group input-group-static mb-3" id="password">
+              <input type="password" name="pass" class="form-control" placeholder="*********" autocomplete="off" value="unchanged">
             </div>
 
               <button class="btn btn-success float-end" type="submit">Save</button>

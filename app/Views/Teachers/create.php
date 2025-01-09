@@ -20,15 +20,22 @@
       
       <form action="store" method="post">
         <div class="row">
-          <div class="col-md-12">
-            <div class="input-group input-group-outline my-3" id="teacher_name">
-              <label class="form-label">Teacher's Name</label>
+         <div class="col-md-12">
+            <label class="form-label">Teacher's Name</label>
+            <div class="input-group input-group-static mb-3 is-filled" id="teacher_name">
+              
               <input type="text" name="teacher_name" class="form-control" value="<?= old('teacher_name') ?>" required>
 
             </div>
-            <div class="input-group input-group-outline my-3" id="email">
-              <label class="form-label">Teacher's E-mail</label>
-              <input type="text" name="email" class="form-control" value="<?= old('email') ?>" required>
+            <label class="form-label">Teacher's E-mail</label>
+            <div class="input-group input-group-static mb-3 is-filled">
+        
+                <input type="text" name="email" class="form-control" value="" autocomplete="off" required id="email">  
+              
+            </div>
+            <label class="form-label">Password</label>
+            <div class="input-group input-group-static mb-3" id="password">
+              <input type="password" name="pass" class="form-control" placeholder="*********" autocomplete="off">
             </div>
 
               <button class="btn btn-success float-end" type="submit">Save</button>
@@ -38,3 +45,8 @@
     </div>
   </div>
 </div>
+
+<script>
+  
+  document.getElementsById("email").value = "";
+</script>

@@ -51,6 +51,7 @@ abstract class BaseController extends Controller
         // Do Not Edit This Line
         parent::initController($request, $response, $logger);
 
+        
         // Preload any models, libraries, etc, here.
 
         // E.g.: $this->session = \Config\Services::session();
@@ -130,5 +131,15 @@ abstract class BaseController extends Controller
             session()->setFlashdata('error', 'File upload failed.');
             return redirect()->back()->withInput(); // Redirect back to the form with input data
         }
+    }
+
+    function enc($plainText) {
+        
+        $secretKey = "~n~!s<|Vas3ei*Eff)6P8*>RCz]wDa";
+        $hash = hash_hmac('sha512', $plainText, $secretKey, true);
+
+        $base64Hash = base64_encode($hash);
+        
+        return $base64Hash;
     }
 }
