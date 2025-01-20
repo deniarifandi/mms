@@ -37,7 +37,7 @@ class CasesController extends BaseController
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('cases/index',['cases' => $cases]);
+        echo view('Cases/index',['cases' => $cases]);
         echo view('footer');
     }
 
