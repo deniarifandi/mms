@@ -37,7 +37,7 @@ class PresentationsController extends BaseController
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('presentations/index',['presentations' => $presentations]);
+        echo view('Presentations/index',['presentations' => $presentations]);
         echo view('footer');
     }
 

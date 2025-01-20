@@ -35,7 +35,7 @@ class PedagogysController extends BaseController
         echo view('header',$this->allComp);
         echo view('sidebar');
         echo view('navbar');
-        echo view('pedagogys/index',['pedagogys' => $pedagogys]);
+        echo view('Pedagogys/index',['pedagogys' => $pedagogys]);
         echo view('footer');
     }
 
