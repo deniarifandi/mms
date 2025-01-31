@@ -41,8 +41,9 @@ $routes->group('/subjects', ['filter' => 'auth'],static function ($routes){
 	$routes->post('update/(:num)','SubjectsController::update/$1');
 	$routes->delete('delete/(:num)','SubjectsController::delete/$1');
 
-	$routes->get('view/(:any)','SubjectsController::view/$1');
 });
+
+$routes->get('/subjects/view/(:any)','SubjectsController::view/$1');
 
 $routes->group('/objectives', ['filter' => 'auth'],static function ($routes){
 	$routes->get('/','ObjectivesController::index');
@@ -85,8 +86,9 @@ $routes->group('/pedagogys', ['filter' => 'auth'],static function ($routes){
 	$routes->post('update/(:num)','PedagogysController::update/$1');
 	$routes->delete('delete/(:num)','PedagogysController::delete/$1');
 
-	$routes->get('view/(:any)','PedagogysController::view/$1');
+	
 });
+$routes->get('/pedagogys/view/(:any)','PedagogysController::view/$1');
 
 $routes->group('/microcredentials', ['filter' => 'auth'],static function ($routes){
 	$routes->get('/','MicrocredentialsController::index');
@@ -97,8 +99,10 @@ $routes->group('/microcredentials', ['filter' => 'auth'],static function ($route
 	$routes->post('update/(:num)','MicrocredentialsController::update/$1');
 	$routes->delete('delete/(:num)','MicrocredentialsController::delete/$1');
 
-	$routes->get('view/(:any)','MicrocredentialsController::view/$1');
+	
 });
+
+$routes->get('/microcredentials/view/(:any)','MicrocredentialsController::view/$1');
 
 $routes->group('/cases', ['filter' => 'auth'],static function ($routes){
 	$routes->get('/','CasesController::index');
