@@ -72,9 +72,9 @@ $routes->group('/lesson-plans', ['filter' => 'auth'],static function ($routes){
 	$routes->get('edit/(:num)','LessonPlansController::edit/$1');
 	$routes->post('update/(:num)','LessonPlansController::update/$1');
 	$routes->delete('delete/(:num)','LessonPlansController::delete/$1');
-
-	$routes->get('view/(:any)/(:any)','LessonPlansController::view/$1/$2');
 });
+
+$routes->get('/lesson-plans/view/(:any)/(:any)','LessonPlansController::view/$1/$2');
 
 $routes->group('/pedagogys', ['filter' => 'auth'],static function ($routes){
 	$routes->get('/','PedagogysController::index');
