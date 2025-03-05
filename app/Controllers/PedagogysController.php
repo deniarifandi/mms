@@ -81,7 +81,7 @@ class PedagogysController extends BaseController
             'file' => $newName  // Store the file name in the database
         ]);
 
-        session()->setFlashdata('success', 'Pedagogy Created');
+        session()->setFlashdata('success', 'EMI Videos Created');
 
         return redirect()->to(base_url('pedagogys'));
     }

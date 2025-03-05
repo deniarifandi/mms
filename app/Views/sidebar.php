@@ -56,14 +56,14 @@
 
         <li class="nav-item">
           <a class="nav-link text-dark" href="<?php echo base_url()?>pedagogys">
-            <i class="fas fa-lightbulb"></i>
-            <span class="nav-link-text ms-1">Pedagogies</span>
+            <i class="fas fa-video"></i>
+            <span class="nav-link-text ms-1">EMI Videos</span>
           </a>
         </li>
          <li class="nav-item">
           <a class="nav-link text-dark" href="<?php echo base_url()?>microcredentials">
             <i class="fab fa-microblog"></i>
-            <span class="nav-link-text ms-1">Microcredentials</span>
+            <span class="nav-link-text ms-1">FAQ</span>
           </a>
         </li>
         <li class="nav-item" style="display: none;">
