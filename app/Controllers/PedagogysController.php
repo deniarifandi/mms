@@ -142,6 +142,19 @@ class PedagogysController extends BaseController
         return redirect()->to(base_url('pedagogys'));
     }
 
+    public function streamVideo($filename)
+    {
+        $path = WRITEPATH . 'uploads/pedagogys/' . $filename;
+
+        if (file_exists($path)) {
+            return $this->response
+                ->setContentType(mime_content_type($path))
+                ->setBody(file_get_contents($path));
+        }
+
+        throw new \CodeIgniter\Exceptions\PageNotFoundException("File not found: $filename");
+    }
+
       public function view($filename){
 
         $path = WRITEPATH . 'uploads/pedagogys/'. $filename;

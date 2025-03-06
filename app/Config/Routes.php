@@ -88,6 +88,7 @@ $routes->group('/pedagogys', ['filter' => 'auth'],static function ($routes){
 
 	
 });
+
 $routes->get('/pedagogys/view/(:any)','PedagogysController::view/$1');
 
 $routes->group('/microcredentials', ['filter' => 'auth'],static function ($routes){
@@ -98,8 +99,6 @@ $routes->group('/microcredentials', ['filter' => 'auth'],static function ($route
 	$routes->get('edit/(:num)','MicrocredentialsController::edit/$1');
 	$routes->post('update/(:num)','MicrocredentialsController::update/$1');
 	$routes->delete('delete/(:num)','MicrocredentialsController::delete/$1');
-
-	
 });
 
 $routes->get('/microcredentials/view/(:any)','MicrocredentialsController::view/$1');
