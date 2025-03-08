@@ -5,8 +5,8 @@
 </head>
 <body>
 
-<video width="600" controls>
-    <source src="<?= $video_url ?>" type="video/mp4">
+<video width="640" height="360" controls>
+    <source src="<?php echo base_url();?>assets/video/test.mp4.txt" type="video/mp4">
     Your browser does not support the video tag.
 </video>
 
