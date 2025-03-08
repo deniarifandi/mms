@@ -157,7 +157,7 @@ class PedagogysController extends BaseController
 
     public function streaming(){
 
-        return view("streaming.php");
+        return view("streaming");
 
     }
 
