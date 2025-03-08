@@ -159,7 +159,9 @@ class PedagogysController extends BaseController
 
         $path = WRITEPATH . 'uploads/pedagogys/'. $filename;
         if (file_exists($path)) {
-            return $this->response->setContentType(mime_content_type($path))->setBody(file_get_contents($path));
+            //return $this->response->setContentType(mime_content_type($path))->setBody(file_get_contents($path));
+            $data['video_url'] = file_get_contents($path);
+            return view("pedagogys/streaming", $data);
         }
         throw new \CodeIgniter\Exceptions\PageNotFoundException("File not found: $filename");
 
