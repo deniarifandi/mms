@@ -63,7 +63,7 @@ abstract class BaseController extends Controller
         $rules = [
             'file' => [
                 'label' => 'File',
-                'rules' => 'uploaded[file]|max_size[file,30000]|ext_in[file,doc,docx,ppt,pptx,pdf,mp4]', // Max size in KB, allowed extensions
+                'rules' => 'uploaded[file]|max_size[file,30000]|ext_in[file,doc,docx,ppt,pptx,pdf,mp4,mov,webm,avi,mkv,mpeg,3gp]', // Max size in KB, allowed extensions
             ],
         ];
 

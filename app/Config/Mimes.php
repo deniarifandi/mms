@@ -395,7 +395,7 @@ class Mimes
             'video/3gp',
             'video/3gpp',
         ],
-        'mp4' => 'video/mp4',
+        'mp4' => ['video/mp4', 'application/octet-stream'],
         'm4a' => 'audio/x-m4a',
         'f4v' => [
             'video/mp4',

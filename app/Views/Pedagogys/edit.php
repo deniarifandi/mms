@@ -17,7 +17,7 @@
       <?php endif; ?>
       
       
-      <form action="<?= base_url() ?>/pedagogys/update/<?= $data['pedagogy_id'] ?>" method="post" enctype="multipart/form-data">
+      <form action="<?= base_url() ?>pedagogys/update/<?= $data['pedagogy_id'] ?>" method="post" enctype="multipart/form-data">
         <div class="row">
           <div class="col-md-12">
             <div class="input-group input-group-outline my-3 is-filled" id="pedagogy">

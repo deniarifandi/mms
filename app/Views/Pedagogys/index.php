@@ -35,7 +35,7 @@
                       <td><?= $pedagogy['pedagogy'] ?></td>
                       <td>
                         <?php if (!empty($pedagogy['file'])): ?>
-                         <a class="btn btn-sm btn-success mb-0" href="<?php echo base_url().'pedagogys/view/'.$pedagogy['file'] ?>">View</a>
+                         <a class="btn btn-sm btn-success mb-0" href="<?php echo base_url().'streaming?video='.$pedagogy['file'] ?>">View</a>
                         <?php else: ?> 
                            <a class="btn btn-sm btn-secondary mb-0" style="pointer-events: none;">No File</a>
                         <?php endif; ?>

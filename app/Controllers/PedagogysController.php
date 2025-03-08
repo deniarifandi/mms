@@ -61,7 +61,7 @@ class PedagogysController extends BaseController
          $subject_id = $this->request->getPost('subject_id');
         $file = $this->request->getFile('file');
         $newName = null;
-        $path = WRITEPATH . 'uploads/pedagogys/';
+        $path = base_url() . 'assets/video/';
 
         if ($file->getError() != UPLOAD_ERR_NO_FILE) {
 
@@ -107,7 +107,7 @@ class PedagogysController extends BaseController
         $subject_id = $this->request->getPost('subject_id');
         $file = $this->request->getFile('file');
         
-         $path = WRITEPATH . 'uploads/pedagogys/';
+        $path = FCPATH . 'assets/video/';
         $newName = $this->request->getPost('currentFile');
 
         if ($file->getError() != UPLOAD_ERR_NO_FILE) {
