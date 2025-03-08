@@ -58,14 +58,14 @@ class PedagogysController extends BaseController
 
     public function store() {
         
-         $subject_id = $this->request->getPost('subject_id');
+        $subject_id = $this->request->getPost('subject_id');
         $file = $this->request->getFile('file');
         $newName = null;
         $path = base_url() . 'assets/video/';
 
         if ($file->getError() != UPLOAD_ERR_NO_FILE) {
 
-            $newName = $this->uploadFile($file,$path);
+            $newName = $this->uploadVideo($file,$path);
         
             if (isset($newName['file'])) {
                 session()->setFlashdata('error', $newName['file']);
@@ -112,7 +112,7 @@ class PedagogysController extends BaseController
 
         if ($file->getError() != UPLOAD_ERR_NO_FILE) {
 
-            $newName = $this->uploadFile($file,$path);
+            $newName = $this->uploadVideo($file,$path);
             // print_r($newName);
             // echo $newName['file'];
             if (isset($newName['file'])) {
