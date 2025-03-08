@@ -155,6 +155,12 @@ class PedagogysController extends BaseController
         throw new \CodeIgniter\Exceptions\PageNotFoundException("File not found: $filename");
     }
 
+    public function streaming(){
+
+        return view("streaming.php");
+
+    }
+
       public function view($filename){
 
         $path = WRITEPATH . 'uploads/pedagogys/'. $filename;
