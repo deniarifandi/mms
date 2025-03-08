@@ -90,7 +90,7 @@ $routes->group('/pedagogys', ['filter' => 'auth'],static function ($routes){
 
 
 $routes->get('/pedagogys/view/(:any)','PedagogysController::view/$1');
-$routes->get('/streaming', 'Home::streaming');
+$routes->get('/streaming', 'PedagogysController::streaming');
 
 $routes->group('/microcredentials', ['filter' => 'auth'],static function ($routes){
 	$routes->get('/','MicrocredentialsController::index');
