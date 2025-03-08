@@ -163,7 +163,8 @@ class PedagogysController extends BaseController
             $data['video_url'] = file_get_contents($path);
             return view("Pedagogys/streaming", $data);
         }
-        throw new \CodeIgniter\Exceptions\PageNotFoundException("File not found: $filename");
+        echo "not found";
+        // throw new \CodeIgniter\Exceptions\PageNotFoundException("File not found: $filename");
 
     }
    
