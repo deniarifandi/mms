@@ -13,7 +13,7 @@
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Microcredentials table <a href="microcredentials/create" class="btn btn-primary btn-sm float-end my-0 me-3">Add Microcredential</a> </h6>
+                <h6 class="text-white text-capitalize ps-3">FAQ table <a href="microcredentials/create" class="btn btn-primary btn-sm float-end my-0 me-3">Add FAQ</a> </h6>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
@@ -22,8 +22,8 @@
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Microcredential Name</th>
-                        <th>File</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Question</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Answer</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                       
                     </tr>
@@ -32,14 +32,8 @@
                     <?php foreach ($microcredentials as $microcredential): ?>
                       <tr>
                       <td><?= $microcredential['microcredential_id'] ?></td>
-                      <td><?= $microcredential['microcredential'] ?></td>
-                    <td>
-                        <?php if (!empty($microcredential['file'])): ?>
-                         <a class="btn btn-sm btn-success mb-0" href="<?php echo base_url().'microcredentials/view/'.$microcredential['file'] ?>">Download</a>
-                        <?php else: ?> 
-                           <a class="btn btn-sm btn-secondary mb-0" style="pointer-events: none;">No File</a>
-                        <?php endif; ?>
-                      </td>
+                      <td class="text-wrap"><?= $microcredential['microcredential'] ?></td>
+                      <td class="text-wrap"><?= $microcredential['description'] ?></td>
                       <td>
                         <a class="btn btn-primary btn-sm mb-0" href="microcredentials/edit/<?= $microcredential['microcredential_id'] ?>">Edit</a>
                         <a class="btn btn-danger btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick='modalConfirmation(<?= json_encode($microcredential); ?>)'>Delete</a>

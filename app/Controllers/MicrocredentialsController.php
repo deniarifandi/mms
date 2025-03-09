@@ -28,8 +28,7 @@ class MicrocredentialsController extends BaseController
         // Show list of items
         $microcredentials = $this->Microcredentials
         ->orderBy('microcredential_id','desc')
-        ->join('subjects','microcredentials.subject_id = subjects.subject_id')
-        ->where('subjects.deleted_at',null)
+     
         ->findAll();
         
         // echo json_encode($microcredentials);
@@ -65,23 +64,11 @@ class MicrocredentialsController extends BaseController
         $newName = null;
         $path = WRITEPATH . 'uploads/microcredentials/';
 
-        if ($file->getError() != UPLOAD_ERR_NO_FILE) {
-
-            $newName = $this->uploadFile($file,$path);
-        
-            if (isset($newName['file'])) {
-                session()->setFlashdata('error', $newName['file']);
-                return redirect()->back()->withInput(); // Redirect back to the form with input data
-            }
-            
-        }
-
 
         $this->Microcredentials->save([
             'microcredential' => $this->request->getPost('microcredential'),
             'subject_id' => $subject_id,
-            'description' => $this->request->getPost('description'),
-            'file' => $newName  // Store the file name in the database
+            'description' => $this->request->getPost('description')
         ]);
 
         return redirect()->to(base_url('microcredentials'));
@@ -106,32 +93,16 @@ class MicrocredentialsController extends BaseController
         // Update the item in the database
 
         $subject_id = $this->request->getPost('subject_id');
-        $file = $this->request->getFile('file');
-        
-         $path = WRITEPATH . 'uploads/microcredentials/';
-        $newName = $this->request->getPost('currentFile');
-
-        if ($file->getError() != UPLOAD_ERR_NO_FILE) {
-
-            $newName = $this->uploadFile($file,$path);
-            // print_r($newName);
-            // echo $newName['file'];
-            if (isset($newName['file'])) {
-                session()->setFlashdata('error', $newName['file']);
-                return redirect()->back()->withInput(); // Redirect back to the form with input data
-            }
-            
-        }
         
         $data = [
             'microcredential'  => $this->request->getPost('microcredential'),
             'subject_id' => $subject_id,
-            'description' => $this->request->getPost('description'),
-            'file' => $newName
+            'description' => $this->request->getPost('description')
+          
         ];
 
         $this->Microcredentials->update($id, $data);
-        session()->setFlashdata('success', 'Microcredential Edited');
+        session()->setFlashdata('success', 'FAQ Edited');
         return redirect()->to(base_url('microcredentials'));
     }
 
@@ -139,7 +110,7 @@ class MicrocredentialsController extends BaseController
         // Delete the item from the database
 
         $this->Microcredentials->delete($id);
-        session()->setFlashdata('success', 'Microcredential Deleted');
+        session()->setFlashdata('success', 'FAQ Deleted');
         return redirect()->to(base_url('microcredentials'));
     }
 
