@@ -85,7 +85,7 @@ $routes->group('/pedagogys', ['filter' => 'auth'],static function ($routes){
 	$routes->get('edit/(:num)','PedagogysController::edit/$1');
 	$routes->post('update/(:num)','PedagogysController::update/$1');
 	$routes->delete('delete/(:num)','PedagogysController::delete/$1');
-	
+	$routes->get('deletevideo/(:any)','PedagogysController::deletevideo/$1');
 });
 
 

@@ -50,7 +50,9 @@
                <?php if (!empty($data['file'])): ?>
                 <p>Current file: <strong><?= $data['file'] ?></strong></p>
                 <input type="hidden" name="currentFile" value="<?= $data['file']?>" readonly>
-                <a class="btn btn-sm btn-success" href="<?php echo base_url().'pedagogys/view/'.$data['file'] ?>">Download</a>
+                <a class="btn btn-sm btn-success" href="<?php echo base_url().'streaming?video='.$data['file'] ?>">Download</a>
+             
+               <a style="display:none"> class="btn btn-sm btn-danger" href="<?php echo base_url().'pedagogys/deletevideo/'.$data['file'] ?>">Delete</a>
               <?php endif; ?>
             </div>
       

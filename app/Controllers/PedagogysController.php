@@ -142,6 +142,18 @@ class PedagogysController extends BaseController
         return redirect()->to(base_url('pedagogys'));
     }
 
+    public function deletevideo($filename)
+    {
+        $path = FCPATH . 'assets/video/'.$filename;
+
+        if (file_exists($path)) {
+            unlink($path);
+            return $this->response->setJSON(['status' => 'success', 'message' => 'File deleted successfully']);
+        }
+
+        return $this->response->setJSON(['status' => 'error', 'message' => 'File not found']);
+    }
+
     public function streamVideo($filename)
     {
         $path = WRITEPATH . 'uploads/pedagogys/' . $filename;
