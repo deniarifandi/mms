@@ -13,7 +13,7 @@
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Pedagogys table <a href="pedagogys/create" class="btn btn-primary btn-sm float-end my-0 me-3">Add Pedagogy</a> </h6>
+                <h6 class="text-white text-capitalize ps-3">EMI Videos table <a href="pedagogys/create" class="btn btn-primary btn-sm float-end my-0 me-3">Add Videos</a> </h6>
               </div>
             </div>
             <div class="card-body px-0 pb-2">

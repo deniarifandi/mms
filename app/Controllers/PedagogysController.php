@@ -113,8 +113,7 @@ class PedagogysController extends BaseController
         if ($file->getError() != UPLOAD_ERR_NO_FILE) {
 
             $newName = $this->uploadVideo($file,$path);
-            // print_r($newName);
-            // echo $newName['file'];
+          
             if (isset($newName['file'])) {
                 session()->setFlashdata('error', $newName['file']);
                 return redirect()->back()->withInput(); // Redirect back to the form with input data

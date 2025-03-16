@@ -47,6 +47,11 @@
             <div class="input-group input-group-outline" id="file">
               <input type="file" name="file" class="form-control">
             </div>
+            <br>
+            <label class="form-label">5. Thumbnail's File <sup>*("jpg", "png" / 1MB Max)</sup></label>
+            <div class="input-group input-group-outline" id="file">
+              <input type="file" name="thumbnail" class="form-control">
+            </div>
         
               <button class="btn btn-success float-end" type="submit">Save</button>
           </div>
