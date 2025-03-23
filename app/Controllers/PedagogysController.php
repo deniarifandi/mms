@@ -28,7 +28,7 @@ class PedagogysController extends BaseController
         // Show list of items
         $pedagogys = $this->Pedagogys
         ->orderBy('pedagogy_id','desc')
-   
+        ->where('Pedagogys.deleted_at',null)
         ->findAll();
 
         echo view('header',$this->allComp);
