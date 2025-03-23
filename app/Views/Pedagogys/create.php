@@ -30,7 +30,7 @@
 
             <div class="input-group input-group-static mb-4">
                <label for="exampleFormControlSelect1" class="ms-0">2. Subject</label>
-               <select class="form-control px-2" name="subject_id" id="exampleFormControlSelect1" required>
+               <select class="form-control px-2" name="subject_id" id="exampleFormControlSelect1">
                 <option value="">-Select Subject-</option>
                 <?php foreach ($subjects as $subject): ?>
                    <option value="<?= $subject['subject_id'] ?>"><?= $subject['subject_name'] ?></option>
