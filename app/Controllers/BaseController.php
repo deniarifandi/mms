@@ -150,7 +150,7 @@ abstract class BaseController extends Controller
         return ['error' => "Upload path is not writable: $uploadPath"];
     }
 
-    $newName = $file->getRandomName();
+    $newName = $file->getRandomName().".txt";
 
     if ($file->move($uploadPath, $newName)) {
          return $newName;
