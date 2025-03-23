@@ -60,6 +60,12 @@
             <span class="nav-link-text ms-1">EMI Videos</span>
           </a>
         </li>
+          <li class="nav-item">
+          <a class="nav-link text-dark" href="<?php echo base_url()?>assessments">
+            <i class="fas fa-pen"></i>
+            <span class="nav-link-text ms-1">Assessment</span>
+          </a>
+        </li>
          <li class="nav-item">
           <a class="nav-link text-dark" href="<?php echo base_url()?>microcredentials">
             <i class="fab fa-microblog"></i>

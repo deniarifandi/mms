@@ -123,3 +123,18 @@ $routes->group('/presentations', ['filter' => 'auth'],static function ($routes){
 	$routes->post('update/(:num)','PresentationsController::update/$1');
 	$routes->delete('delete/(:num)','PresentationsController::delete/$1');
 });
+
+$routes->group('/assessments', ['filter' => 'auth'],static function ($routes){
+	$routes->get('/','AssessmentsController::index');
+	$routes->get('show/(:num)','AssessmentsController::show/$1');
+	$routes->get('create','AssessmentsController::create');
+	$routes->post('store','AssessmentsController::store');
+	$routes->get('edit/(:num)','AssessmentsController::edit/$1');
+	$routes->post('update/(:num)','AssessmentsController::update/$1');
+	$routes->delete('delete/(:num)','AssessmentsController::delete/$1');
+});
+
+$routes->group('/api',static function ($routes){
+	$routes->get('get','ApiController::get_subject');
+	$routes->get('get_video_list/(:num)','ApiController::get_video_list/$1');
+});
