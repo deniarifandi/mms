@@ -43,7 +43,7 @@
             </div>
 
 
-            <label class="form-label text-dark">4. Video's File  <sup>*("mp4", "avi", "mov", "mkv", "webm" / 100MB Max)</sup></label>
+            <label class="form-label text-dark">4. Video's File  <sup>*("mp4", "avi", "mov", "mkv", "webm" / 250MB Max)</sup></label>
             <div class="input-group input-group-static" id="file">
                <input type="file" name="file" id="file">
                <!-- Display the current file name if it exists -->
