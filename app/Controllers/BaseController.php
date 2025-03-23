@@ -95,7 +95,7 @@ abstract class BaseController extends Controller
         }
     }
 
-     public function uploadVideo($file,$path){
+     public function uploadVideo2($file,$path){
 
           // Validation rules
         $rules = [
@@ -131,6 +131,33 @@ abstract class BaseController extends Controller
             session()->setFlashdata('error', 'File upload failed.');
             return redirect()->back()->withInput(); // Redirect back to the form with input data
         }
+    }
+
+    public function uploadVideo($file, $path)
+    {
+
+          if (!$file->isValid()) {
+        return ['error' => 'Invalid file: ' . $file->getErrorString()];
+    }
+
+    $uploadPath = WRITEPATH . '../public/assets/video/';
+
+    if (!is_dir($uploadPath)) {
+        mkdir($uploadPath, 0777, true);
+    }
+
+    if (!is_writable($uploadPath)) {
+        return ['error' => "Upload path is not writable: $uploadPath"];
+    }
+
+    $newName = $file->getRandomName();
+
+    if ($file->move($uploadPath, $newName)) {
+         return $newName;
+       // return ['success' => 'File uploaded successfully', 'filename' => $newName];
+    } else {
+        return ['error' => 'Failed to move the uploaded file.'];
+    }
     }
 
     public function uploadImage($file,$path){
